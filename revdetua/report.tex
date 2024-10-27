@@ -14,13 +14,23 @@
 % Note: the really final version should also use the mirror option
 %
 
+\usepackage[portuguese]{babel} % Adjust based on your needs
+\usepackage[utf8]{inputenc} % Required for Portuguese
+\usepackage{amsmath} 
+\usepackage{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% compiling:
+% Recipe: xelatex
+% Recipe: pdflatex -> bibtex -> pdflatex -> pdflatex
+% Recipe: xelatex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
 \Header{0}{09}{Novembro}{2024}{1}
 % Note: the month must be in Portuguese
 
 \title{title}
-\author{Hugo Campos Veríssimo}
+\author{Hugo Campos sss Veríssimo}
 \maketitle
 
 \begin{abstract}
@@ -40,17 +50,48 @@ keywords pt in Portuguese (optional)
 \end{palavraschave}
 
 \section{Introdução}
-lalalla
 
-\section{Heuristica}
+Os problemas em grafos, atualmente, são amplamente estudados, pelo facto de terem a capacidade de modelar diversas situações reais, desde as mais palpáveis, como redes de computadores (problema \textit{Minimum Spanning Tree}) até às mais abstratas, como física teórica (problema \textit{Maximum Weight Cut}) \cite{WP24}.
+
+Este relatório visa explorar o problema \textit{Maximum Weight Cut}, conhecido em português por Corte de Peso Máximo, que consiste na divisão de um grafo não direcionado, $G(V, E)$, onde $|V| = n$ vértices e $|E| = m$ arestas de peso $w_{i,j} \geq 0\ \forall\ (i,j) \in E$, em dois subconjuntos complementares, $S$ e $T$, de forma a maximizar a soma dos pesos das arestas que ligam os dois conjuntos \cite{SC03}, isto é
+\begin{equation*}
+    \begin{split}
+        \max \sum_{i \in S,\ j \in T} w_{i,j} \\ 
+        \left\{\begin{split}
+            &S \cup T = V \\
+            &S \cap T = \emptyset
+        \end{split}\right.
+    \end{split}
+\end{equation*}
+
+Apesar do problema oposto, conhecido como \textit{Minimum Weight Cut}, ter um algoritmo de resolução em tempo polinomial, em certas condições, o problema \textit{Maximum Weight Cut} não o possui, sendo um problema \textit{NP-Hard}. Isto implica que à medida que o tamanho do grafo aumenta, encontrar soluções exatas para este problema tornam-se computacionalmente caras \cite{WP24}.
+
+Ao longo deste relatório, serão abordadas duas estratégias para a resolução do problema: uma busca exaustiva e uma heurística gulosa.
+
+% pode se meter aqui foto la do problema
+
+\section{org e codigo}
+
+ns q gerar graficos, ficheiro no github?
+
+etc etc
+
+\section{Algoritmo de Pesquisa Exaustiva}
+
+
+a busca exaustiva, que explora todas as combinações possíveis para encontrar uma solução ótima
+
+\section{Algoritmo de Pesquisa Gulosa}
+
+técnica heurística gulosa (greedy), que procura uma solução aproximada de maneira eficiente, tomando decisões locais que parecem melhores no momento, embora sem garantia de que serão as ótimas globais.
 
 \section{qqcena}
 
-jdsauhdisa \cite{Nobody06}
-
+jdsauhdisa
+aa a a
 \section{qqcena}
-dasdsad sn q disse \cite{Nobody06}
+dasdsad sn q disse
 
-\bibliography{refs} % use a field named url or \url{} for URLs
+\bibliography{refs}
 
 \end{document}

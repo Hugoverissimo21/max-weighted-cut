@@ -1,7 +1,14 @@
 \begin{thebibliography}{1}
 
-\bibitem{Nobody06}
-Nobody Jr,
-\newblock ``My article'', 2006.
+\bibitem{WP24}
+{Wikipedia contributors},
+\newblock ``Maximum cut --- {Wikipedia}{,} the free encyclopedia'',
+\newblock \url{https://en.wikipedia.org/w/index.php?title=Maximum_cut&oldid=1247744814}, 2024,
+\newblock [Online; accessed 27-October-2024].
+
+\bibitem{SC03}
+Noga Alon, B{\'e}la Bollob{\'a}s, Michael Krivelevich, and Benny Sudakov,
+\newblock ``Maximum cuts and judicious partitions in graphs without short cycles'',
+\newblock {\em Journal of Combinatorial Theory, Series B}, vol.~88, no.~2, pp.~329--346, 2003.
 
 \end{thebibliography}
