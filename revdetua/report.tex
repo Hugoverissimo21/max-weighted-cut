@@ -29,11 +29,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
-\Header{0}{09}{Novembro}{2024}{1}
-% Note: the month must be in Portuguese
+\Header{01}{01}{Novembro}{2024}{1}
 
-\title{title}
-\author{Hugo Camposs sss Veríssimo}
+\title{Maximum Weight Cut}
+\author{Hugo Veríssimo - 124348 - hugoverissimo@ua.pt}
 \maketitle
 
 \begin{abstract}
@@ -44,17 +43,10 @@ abstrato em pt bla bla ns q in English
 resumo baksdakdjsa in Portuguese
 \end{resumo}
 
-\begin{keywords}
-keywords Note: in English (optional)
-\end{keywords}
-
-\begin{palavraschave}
-keywords pt in Portuguese (optional)
-\end{palavraschave}
-
 \section{Introdução}
 
 Atualmente, os problemas em grafos são amplamente estudados, pelo facto de terem a capacidade de modelar diversas situações reais, desde as mais palpáveis, como redes de computadores (problema \textit{Minimum Spanning Tree}) até às mais abstratas, como física teórica (problema \textit{Maximum Weight Cut}) \cite{WP24}.
+% arranjar fontes sem ser wikipedia
 
 Este relatório visa explorar o problema \textit{Maximum Weight Cut}, conhecido em português por Corte de Peso Máximo, que consiste na divisão de um grafo não direcionado, $G(V, E)$, onde $|V| = n$ vértices e $|E| = m$ arestas de peso $w_{i,j} \geq 0\ \forall\ (i,j) \in E$, em dois subconjuntos complementares, $S$ e $T$, de forma a maximizar a soma dos pesos das arestas que ligam os dois conjuntos \cite{SC03}, isto é
 \begin{equation*}
@@ -102,10 +94,10 @@ Para fazer as combinações de vértices possíveis, foi utilizado a livraria it
 % rever pt e tudo mais e ingles e titulo e isso
 \begin{algorithm}
     \raggedright
-    \textbf{Input:} matrix adjacenia do grafo \\
+    \textbf{Input:} \textit{graph} matriz de adjacencia \\
     \textbf{Output:} s, t, weight cut value \\
     \hrule 
-    \caption{Exhaustive Search (graph)}
+    \caption{Exhaustive Search}
     \begin{algorithmic}[1]
         \State input\_set $\gets$ \{0, 1, \ldots, \text{len(graph)} - 1\}
         \State subsets $\gets$ \text{EMPTY LIST}
@@ -137,15 +129,75 @@ Para fazer as combinações de vértices possíveis, foi utilizado a livraria it
 \end{algorithm}
 
 
-
 \section{Algoritmo de Pesquisa Gulosa}
 
 técnica heurística gulosa (greedy), que procura uma solução aproximada de maneira eficiente, tomando decisões locais que parecem melhores no momento, embora sem garantia de que serão as ótimas globais.
 
+bla bla inspirei me apos mta analise em https://arxiv.org/abs/2312.10895v1
+
+... Este algoritmo pode ser traduzido em pseudocódigo da seguinte forma:
+
+
+% rever tudo se n mudei ns e isso e ingles e titulo e isso
+\begin{algorithm}
+    \raggedright
+    \textbf{Input:} \textit{G} matriz de adjacencia \\
+    \textbf{Output:} s, t, weight cut value \\
+    \hrule 
+    \caption{Max Weighted Cut Greedy (G)}
+    \begin{algorithmic}[1]
+    
+        \State n $\gets$ \text{len}(G)
+
+        \Comment{Extract edges and their weights}
+        \State edges $\gets$ \text{EMPTY LIST}
+        \For{i from 0 to n - 1}
+            \For{j from i + 1 to n - 1}
+                \State weight $\gets G[i, j]$
+                \State Add (i, j, weight) to edges
+            \EndFor
+        \EndFor
+
+        \Comment{Sort edges in descending order by weight}
+        \State Sort edges in descending order by weight
+
+        \State seen, S, T $\gets$ \text{empty sets}
+
+        \Comment{Process each edge}
+        \For{each (u, v, weight) in edges}
+            \If{u not in seen and v not in seen}
+                \State Add u to S, add v to T
+                \State Update seen with \{u, v\}
+            \ElsIf{u in S and v not in seen}
+                \State Add v to T, add v to seen
+            \ElsIf{u in T and v not in seen}
+                \State Add v to S, add v to seen
+            \ElsIf{v in S and u not in seen}
+                \State Add u to T, add u to seen
+            \ElsIf{v in T and u not in seen}
+                \State Add u to S, add u to seen
+            \Else
+                \Comment{Both u and v have been seen, skip}
+            \EndIf
+        \EndFor
+
+        \State \Return S, T, \Call{calculate\_cut\_weight}{G, S}
+    
+    \end{algorithmic}
+\end{algorithm}
+
+\pagebreak
+% pq a section estava a ficar antes do alg para ter mais texto idk why cuidado
+
 \section{qqcena}
 
 jdsauhdisa
+
+
 aa a a
+
+oi
+
 \section{qqcena}
 dasdsad sn q disse
 
