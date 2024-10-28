@@ -18,6 +18,9 @@
 \usepackage[utf8]{inputenc} % Required for Portuguese
 \usepackage{amsmath} 
 \usepackage{comment}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+%\floatname{algorithm}{Algoritmo}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % compiling:
 % Recipe: xelatex
@@ -30,7 +33,7 @@
 % Note: the month must be in Portuguese
 
 \title{title}
-\author{Hugo Campos sss Veríssimo}
+\author{Hugo Camposs sss Veríssimo}
 \maketitle
 
 \begin{abstract}
@@ -51,7 +54,7 @@ keywords pt in Portuguese (optional)
 
 \section{Introdução}
 
-Os problemas em grafos, atualmente, são amplamente estudados, pelo facto de terem a capacidade de modelar diversas situações reais, desde as mais palpáveis, como redes de computadores (problema \textit{Minimum Spanning Tree}) até às mais abstratas, como física teórica (problema \textit{Maximum Weight Cut}) \cite{WP24}.
+Atualmente, os problemas em grafos são amplamente estudados, pelo facto de terem a capacidade de modelar diversas situações reais, desde as mais palpáveis, como redes de computadores (problema \textit{Minimum Spanning Tree}) até às mais abstratas, como física teórica (problema \textit{Maximum Weight Cut}) \cite{WP24}.
 
 Este relatório visa explorar o problema \textit{Maximum Weight Cut}, conhecido em português por Corte de Peso Máximo, que consiste na divisão de um grafo não direcionado, $G(V, E)$, onde $|V| = n$ vértices e $|E| = m$ arestas de peso $w_{i,j} \geq 0\ \forall\ (i,j) \in E$, em dois subconjuntos complementares, $S$ e $T$, de forma a maximizar a soma dos pesos das arestas que ligam os dois conjuntos \cite{SC03}, isto é
 \begin{equation*}
@@ -78,8 +81,62 @@ etc etc
 
 \section{Algoritmo de Pesquisa Exaustiva}
 
+Tendo em conta o algoritmo de pesquisa exaustiva, este visa gerar todas as combinações possíveis de subconjuntos de $V$ e, para cada subconjunto, calcular o peso do corte e comparar com o melhor corte encontrado até ao momento, ou seja, o algoritmo tem duas fases: a geração de todos os subconjuntos possíveis e a avaliação de cada subconjunto.
 
-a busca exaustiva, que explora todas as combinações possíveis para encontrar uma solução ótima
+Este algoritmo garante a obtenção da solução ótima, no entanto, o seu custo computacional é exponencial, sendo impraticável para grafos de grande dimensão.
+
+... Este algoritmo pode ser traduzido em pseudocódigo da seguinte forma:
+
+\begin{comment}
+De acordo com o problema, todos os vértices que estão em
+S, não estão em T. Assim, o conjunto T é formado pelos
+restantes vértices. Dado estes dois subconjuntos, é
+possível para cada um deles calcular o peso do corte para
+cada possibilidade com a função calculate-weight-cut.
+
+Para fazer as combinações de vértices possíveis, foi utilizado a livraria itertools que contém um método de combinações, gerando automaticamente todas as combinações possíveis para o conjunto S (possible cuts).
+
+É de notar que a função combinations é itertools.combinations(input\_set, r) e a função calculate\_cut\_weight é a função que calcula o peso do corte entre os subconjuntos $S$ e $T$. OU ALGO ASSIM idk
+\end{comment}
+
+% rever pt e tudo mais e ingles e titulo e isso
+\begin{algorithm}
+    \raggedright
+    \textbf{Input:} matrix adjacenia do grafo \\
+    \textbf{Output:} s, t, weight cut value \\
+    \hrule 
+    \caption{Exhaustive Search (graph)}
+    \begin{algorithmic}[1]
+        \State input\_set $\gets$ \{0, 1, \ldots, \text{len(graph)} - 1\}
+        \State subsets $\gets$ \text{EMPTY LIST}
+        \State n $\gets$ \text{LENGTH OF input\_set}
+        
+        \Comment{Generate all subsets}
+        \For{r from 0 to n}
+            \For{each subset in combinations(input\_set, r)}
+            \State Add subset to subsets
+            \EndFor
+        \EndFor
+        
+        \State best $\gets$ input\_set
+        \State weight $\gets$ 0
+        
+        \Comment{Evaluate each subset}
+        \For{each S in subsets}
+            \State new\_weight $\gets$ \Call{calculate\_cut\_weight}{graph, S}
+            
+            \If{new\_weight $>$ weight}
+            \State best $\gets$ S
+            \State weight $\gets$ new\_weight
+            \EndIf
+        \EndFor
+        \State S $\gets$ best
+        \State T $\gets$ input\_set - best
+        \State \Return S, T, weight
+    \end{algorithmic}
+\end{algorithm}
+
+
 
 \section{Algoritmo de Pesquisa Gulosa}
 
