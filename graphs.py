@@ -61,7 +61,7 @@ E = [0.125, 0.25, 0.5, 0.75] # %Edges
 for v in V:
     for e in E:
         random.seed(124348)
-        name = f"graphs/{v}_{int(e*1000)}"
+        name = f"graphs/{str(v).zfill(2)}_{int(e*1000)}"
         G = create_graph(v, int(e * ((v * (v-1)) / 2)), name)
         draw_graph(G, name, show = False)
     print(f"v={v} OK", end = " | ")
