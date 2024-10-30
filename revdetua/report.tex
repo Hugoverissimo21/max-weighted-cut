@@ -1,9 +1,7 @@
 \documentclass[mirror]{revdetua}
 %
 % Valid options are:
-%   shortpaper -------- \part and \tableofcontents not defined (default)
 %   portugues --------- main language is Portuguese
-%   draft ------------- draft version
 %   final ------------- final version (default)
 %   times ------------- use times (postscript) fonts for text
 %   mirror ------------ prints a mirror image of the paper (with dvips)
@@ -14,8 +12,8 @@
 % Note: the really final version should also use the mirror option
 %
 
-\usepackage[portuguese]{babel} % Adjust based on your needs
-\usepackage[utf8]{inputenc} % Required for Portuguese
+\usepackage[portuguese]{babel}
+\usepackage[utf8]{inputenc}
 \usepackage{amsmath} 
 \usepackage{comment}
 \usepackage{algorithm}
@@ -36,17 +34,17 @@
 \maketitle
 
 \begin{abstract}
-abstrato em pt bla bla ns q in English
+abstrato em pt bla bla ns q in English  in English in English in English in English in English in English in English in English in English in English in English in English in English
 \end{abstract}
 
 \begin{resumo}
-resumo baksdakdjsa in Portuguese
+Este trabalho apresenta a implementação e comparação de dois métodos para resolver o problema \textit{Max Weight Cut}: um algoritmo exaustivo e uma heurística gulosa. O problema do \textit{Max Weight Cut} consiste em dividir um grafo em dois conjuntos complementares, de forma a que o peso das arestas cortadas seja maximizado. %melhorar e bem melhorado, o de baixo é melhor !
+%Este trabalho compara duas abordagens para o problema do Max Weight Cut em grafos: um algoritmo exaustivo e uma heurística gulosa. O algoritmo exaustivo, embora garanta a solução ótima, apresenta alta complexidade computacional, tornando-se inviável para grafos grandes. Em contrapartida, a heurística gulosa, que seleciona iterativamente as arestas com maior peso, oferece soluções rápidas, mas não ótimas. Os experimentos demonstram que, embora a heurística não alcance a optimalidade em todos os casos, ela se destaca em eficiência e qualidade da solução para instâncias maiores, evidenciando um trade-off importante entre precisão e desempenho.
 \end{resumo}
 
 \section{Introdução}
 
-Atualmente, os problemas em grafos são amplamente estudados, pelo facto de terem a capacidade de modelar diversas situações reais, desde as mais palpáveis, como redes de computadores (problema \textit{Minimum Spanning Tree}) até às mais abstratas, como física teórica (problema \textit{Maximum Weight Cut}) \cite{WP24}.
-% arranjar fontes sem ser wikipedia
+Atualmente, os problemas em grafos são amplamente estudados, pelo facto de terem a capacidade de modelar diversas situações reais, desde as mais palpáveis, como redes de computadores (problema \textit{Minimum Spanning Tree}) até às mais abstratas, como física estatística (problema \textit{Maximum Weight Cut}) \cite{WANG10}.
 
 Este relatório visa explorar o problema \textit{Maximum Weight Cut}, conhecido em português por Corte de Peso Máximo, que consiste na divisão de um grafo não direcionado, $G(V, E)$, onde $|V| = n$ vértices e $|E| = m$ arestas de peso $w_{i,j} \geq 0\ \forall\ (i,j) \in E$, em dois subconjuntos complementares, $S$ e $T$, de forma a maximizar a soma dos pesos das arestas que ligam os dois conjuntos \cite{SC03}, isto é
 \begin{equation*}
@@ -59,54 +57,49 @@ Este relatório visa explorar o problema \textit{Maximum Weight Cut}, conhecido 
     \end{split}
 \end{equation*}
 
-Apesar do problema oposto, conhecido como \textit{Minimum Weight Cut}, ter um algoritmo de resolução em tempo polinomial, em certas condições, o problema \textit{Maximum Weight Cut} não o possui, sendo um problema \textit{NP-Hard}. Isto implica que à medida que o tamanho do grafo aumenta, encontrar soluções exatas para este problema tornam-se computacionalmente caras \cite{WP24}.
+Apesar do problema oposto, conhecido como \textit{Minimum Weight Cut}, ter um algoritmo de resolução em tempo polinomial, em certas condições, o problema \textit{Maximum Weight Cut} não o possui, sendo um problema \textit{NP-Hard}. Isto implica que à medida que o tamanho do grafo aumenta, encontrar soluções exatas para este problema tornam-se computacionalmente caras \cite{SS23}.
 
 Ao longo deste relatório, serão abordadas duas estratégias para a resolução do problema: uma busca exaustiva e uma heurística gulosa.
 
 % pode se meter aqui foto la do problema
 
-\section{org e codigo}
+\section{Metodologia da Análise}
 
-ns q gerar graficos, ficheiro no github?
+Com o intuito de analisar o problema em destaque, foi utilizada a linguagem de programação \textit{Python}, conhecida pela sua simplicidade e pela vasta variedade de bibliotecas, tais como \textit{networkx}, \textit{numpy} e \textit{itertools}, que facilitaram a implementação das estratégias propostas.
 
-etc etc
+A análise desenvolvida pode ser dividida em 2 ficheiros principais, sem desmerecer o uso de ficheiros auxiliares, sendo os primeiros:
+\begin{verbatim}
+    $ python3 graphs.py
+    $ python3 benchmarks.py
+\end{verbatim}
+
+O ficheiro \textit{graphs.py} teve como propósito gerar vários grafos aleatórios, tendo em conta a semente 124348, com diferentes número de vértices, número de arestas e peso de arestas, de forma a avaliar o comportamento das estratégias aplicadas em diferentes cenários.
+% se quiseres dizer dos 12.5 25 50 75% ...
+
+O ficheiro \textit{benchmarks.py} foi o responsável por executar as estratégias de resolução do problema, nomeadamente a busca exaustiva e a heurística gulosa, para vários grafos gerados, guardando os resultados obtidos, tais como tempo de execução, número de operações básicas e precisão do resultado da heurística gulosa, para posterior análise.
+
+%meter imagem de um dos grafos com nome na fig e isso?
 
 \section{Algoritmo de Pesquisa Exaustiva}
 
-Tendo em conta o algoritmo de pesquisa exaustiva, este visa gerar todas as combinações possíveis de subconjuntos de $V$ e, para cada subconjunto, calcular o peso do corte e comparar com o melhor corte encontrado até ao momento, ou seja, o algoritmo tem duas fases: a geração de todos os subconjuntos possíveis e a avaliação de cada subconjunto.
-
-Este algoritmo garante a obtenção da solução ótima, no entanto, o seu custo computacional é exponencial, sendo impraticável para grafos de grande dimensão.
-
-... Este algoritmo pode ser traduzido em pseudocódigo da seguinte forma:
-
-\begin{comment}
-De acordo com o problema, todos os vértices que estão em
-S, não estão em T. Assim, o conjunto T é formado pelos
-restantes vértices. Dado estes dois subconjuntos, é
-possível para cada um deles calcular o peso do corte para
-cada possibilidade com a função calculate-weight-cut.
-
-Para fazer as combinações de vértices possíveis, foi utilizado a livraria itertools que contém um método de combinações, gerando automaticamente todas as combinações possíveis para o conjunto S (possible cuts).
-
-É de notar que a função combinations é itertools.combinations(input\_set, r) e a função calculate\_cut\_weight é a função que calcula o peso do corte entre os subconjuntos $S$ e $T$. OU ALGO ASSIM idk
-\end{comment}
+Tendo em conta o algoritmo de pesquisa exaustiva, este visa gerar todas as combinações possíveis de subconjuntos de $V$ e, para cada subconjunto, calcular o peso do corte e comparar com o melhor corte encontrado até ao momento, ou seja, o algoritmo tem duas fases: a geração de todos os subconjuntos possíveis e a avaliação de cada subconjunto. Este estratégia garante a obtenção da solução ótima, no entanto, o seu custo computacional é exponencial, sendo impraticável para grafos de grande dimensão. Este algoritmo pode ser representado em pseudocódigo da seguinte maneira:
 
 % rever pt e tudo mais e ingles e titulo e isso
 \begin{algorithm}
     \raggedright
-    \textbf{Input:} \textit{graph} matriz de adjacencia \\
+    \textbf{Input:} \textit{G} matriz de adjacencia \\
     \textbf{Output:} s, t, weight cut value \\
     \hrule 
     \caption{Exhaustive Search}
     \begin{algorithmic}[1]
-        \State input\_set $\gets$ \{0, 1, \ldots, \text{len(graph)} - 1\}
+        \State input\_set $\gets$ \{0, 1, \ldots, \text{len(G)} - 1\}
         \State subsets $\gets$ \text{EMPTY LIST}
         \State n $\gets$ \text{LENGTH OF input\_set}
         
         \Comment{Generate all subsets}
         \For{r from 0 to n}
-            \For{each subset in combinations(input\_set, r)}
-            \State Add subset to subsets
+            \For{each S in combinations(input\_set, r)}
+            \State Add S to subsets
             \EndFor
         \EndFor
         
@@ -115,7 +108,12 @@ Para fazer as combinações de vértices possíveis, foi utilizado a livraria it
         
         \Comment{Evaluate each subset}
         \For{each S in subsets}
-            \State new\_weight $\gets$ \Call{calculate\_cut\_weight}{graph, S}
+            \State new\_weight $\gets$ 0
+            \For{each i in S}
+                \For{each j in input\_set - S}
+                    \State new\_weight $\gets$ new\_weight + G[i, j]
+                \EndFor
+            \EndFor
             
             \If{new\_weight $>$ weight}
             \State best $\gets$ S
@@ -129,22 +127,24 @@ Para fazer as combinações de vértices possíveis, foi utilizado a livraria it
 \end{algorithm}
 
 
+Pode-se verificar que as duas fases deste algoritmo apresentam complexidades $O(2^n)$ e $O(2^n \times n^2)$, respetivamente. A primeira devido ao processo de geração de todos os subconjuntos possíveis ($2^n$) e a segunda devido ao processo de percorrer cada subconjunto ($2^n$) e para cada qual percorrer todas as combinações de arestas entre o próprio e o seu complementar (no pior caso, $(n \div 2)^2 \rightarrow n^2$).
+
+Assim, verifica-se que a complexidade deste algoritmo é exponencial com um fator polinomial: $O(2^n \times n^2)$, o que reforça a ideia de que este algoritmo é impraticável para grafos de grande dimensão, daí a necessidade de algoritmos alternativos, como o algoritmo de pesquisa gulosa.
+
+
 \section{Algoritmo de Pesquisa Gulosa}
 
-técnica heurística gulosa (greedy), que procura uma solução aproximada de maneira eficiente, tomando decisões locais que parecem melhores no momento, embora sem garantia de que serão as ótimas globais.
+Atendendo ao algoritmo de pesquisa gulosa com heurísticas, este segue uma abordagem diferente, uma vez que não garante a obtenção da solução ótima, mas sim uma solução aproximada, em tempo polinomial. Isto acontece devido à natureza do algoritmo, que em cada etapa faz escolhas localmente ótimas, sem considerar o impacto global da escolha, na esperança de alcançar um ótimo global.
 
-bla bla inspirei me apos mta analise em https://arxiv.org/abs/2312.10895v1
+Para o desenvolvimento este algoritmo, foi necessária uma análise a diversas regras heurísticas \cite{WANG23}, com o objetivo de determinar a melhor estratégia a seguir. Desta forma, a estratégia escolhida pode ser examinada em detalhe no pseudocódigo apresentado a seguir.
 
-... Este algoritmo pode ser traduzido em pseudocódigo da seguinte forma:
-
-
-% rever tudo se n mudei ns e isso e ingles e titulo e isso
+% rever tudo se n mudei e isso e ingles e titulo e isso
 \begin{algorithm}
     \raggedright
     \textbf{Input:} \textit{G} matriz de adjacencia \\
     \textbf{Output:} s, t, weight cut value \\
     \hrule 
-    \caption{Max Weighted Cut Greedy (G)}
+    \caption{Greedy Heuristic}
     \begin{algorithmic}[1]
     
         \State n $\gets$ \text{len}(G)
@@ -158,47 +158,60 @@ bla bla inspirei me apos mta analise em https://arxiv.org/abs/2312.10895v1
             \EndFor
         \EndFor
 
-        \Comment{Sort edges in descending order by weight}
         \State Sort edges in descending order by weight
 
-        \State seen, S, T $\gets$ \text{empty sets}
-
         \Comment{Process each edge}
+        \State cut\_weight $\gets$ 0
+        \State seen, S, T $\gets$ \text{EMPTY SETS}
         \For{each (u, v, weight) in edges}
             \If{u not in seen and v not in seen}
+                \State cut\_weight $\gets$ cut\_weight + weight
                 \State Add u to S, add v to T
                 \State Update seen with \{u, v\}
             \ElsIf{u in S and v not in seen}
+                \State cut\_weight $\gets$ cut\_weight + weight
                 \State Add v to T, add v to seen
             \ElsIf{u in T and v not in seen}
+                \State cut\_weight $\gets$ cut\_weight + weight
                 \State Add v to S, add v to seen
             \ElsIf{v in S and u not in seen}
+                \State cut\_weight $\gets$ cut\_weight + weight
                 \State Add u to T, add u to seen
             \ElsIf{v in T and u not in seen}
+                \State cut\_weight $\gets$ cut\_weight + weight
                 \State Add u to S, add u to seen
+            \ElsIf{u in S and v in T}
+                \State cut\_weight $\gets$ cut\_weight + weight
+            \ElsIf{v in S and u in T}
+            \State cut\_weight $\gets$ cut\_weight + weight
             \Else
                 \Comment{Both u and v have been seen, skip}
             \EndIf
         \EndFor
 
-        \State \Return S, T, \Call{calculate\_cut\_weight}{G, S}
+        \State \Return S, T, cut\_weight
     
     \end{algorithmic}
 \end{algorithm}
 
-\pagebreak
-% pq a section estava a ficar antes do alg para ter mais texto idk why cuidado
+%\pagebreak
+% pq texto estava a ficar antes do alg para ter mais texto idk why cuidado
 
-\section{qqcena}
+Pode-se observar que o algortimo tem duas etapas: uma de pré-processamento, onde são extraídas as arestas e os seus pesos e ordenados de forma decrescente, e outra de processamento, onde as arestas são processadas de acordo com as regras heurísticas definidas.
 
-jdsauhdisa
+A primeira etapa deste algoritmo é a mais custosa em termos de complexidade, sendo $O(n^2 + m \log m)$. No pior caso, quando o grafo é denso, tem-se $m = 0.5 \cdot n(n-1)$, o que faz com que o termo $m \log m$ se torne dominante, e a complexidade da etapa passe a ser aproximadamente $O(n^2 \log n)$.
 
+A segunda etapa, por sua vez, tem uma complexidade $O(m)$, dado que que percorre todas as arestas do grafo, sendo que quando o grafo é denso, tem-se $O(n^2)$.
 
-aa a a
+Portanto, pode-se concluir que esta abordagem apresenta uma complexidade polinomial com um fator logarítmico adicional: $O(n^2 \log n)$.
 
-oi
+\section{Análise dos Resultados}
 
-\section{qqcena}
+...
+
+\section{Conclusões}
+% ou conclusão
+
 dasdsad sn q disse
 
 \bibliography{refs}
