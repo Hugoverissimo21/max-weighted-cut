@@ -207,7 +207,57 @@ Portanto, pode-se concluir que esta abordagem apresenta uma complexidade polinom
 
 \section{Análise dos Resultados}
 
-...
+corrido o ficheiro benchmarks.py, foram obtidos varias medidas de resultados ns q bla bla
+
+\subsection{análise de numero de operacoes}
+
+grafico do numero de ops, corresponde a complexidade referida formalmente anteriormente
+
+GRAFICO
+
+é de notar q n se nota diferencas de ops consoante o numero de arestas, isto pq o os algoritmos acabam por analisar todas as arestas, mesmo q tenham valor 0
+
+\subsection{análise de tempo de execução}
+
+para o calculo dos tempos de execucao, foram feitas pelo menos 3 execucoes para cada grafo tendo sido escolhido o tempo minimo entre elas para ter uma maior coerencia/precisao/whatever. para alem disso foi corrido num macbook ...
+
+GRAFICO
+
+ns q verifica se comportamento identeco ao numero de ops, o heuristico é mais rapido e tal
+
+o exuastivo começa a crescer exponencialmente a partir dos ... vertices, tornando mt lenta a sua execucao
+
+ns q foram ajustadas regressoes para os tempos de execucao, de modo a prever o tempo de execucao para grafos de maior dimensao
+
+heuristica, best fit para tempo
+
+$a \times n^2 \log n [1.85901534e-08]$
+
+NMAE (\%) hugo: 8.376400389731693
+
+and
+
+exuastiva, best fit para tempo
+
+$2^{(n - a)} \times n^2 [24.34775728]$
+
+NMAE (\%) hugo: 2.484738758172613
+
+ns q, boas medidas de erro
+
+é de notas q os tempos de execucao nao sao uma grande medida para determinar a eficiencia dos algoritmos e complexidade e ns q, uma vez que depende de processador para processador. neste caso foram feitos num mac bla bla
+
+
+\subsection{solucoes e precisao}
+
+ns q foram testasdas $2^n$ trivialmente, e 1 na heuristica, ns q, bla bla
+
+usou se o conjunto de grafos do gset
+
+\url{https://github.com/0816keisuke/max-cut-problem-benchmark} e ns q e dps de fazer a precisao para os meus e para estes, tendo em conta a melhor conhecida .... e ns q mts nós e arestas comparativamente aos q criei e gset sao 69 grafos acho eu...
+
+nivel de confianca de $95\%$ em torno da média $[0.7631, 0.8120]$ para ter 95\% de confiança que a média real está dentro do intervalo $[0.7631, 0.8120]$.
+
 
 \section{Conclusões}
 % ou conclusão
