@@ -18,6 +18,8 @@
 \usepackage{comment}
 \usepackage{algorithm}
 \usepackage{algpseudocode}
+\usepackage{graphicx}
+\usepackage[justification=centering]{caption}
 %\floatname{algorithm}{Algoritmo}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % compiling:
@@ -207,23 +209,44 @@ Portanto, pode-se concluir que esta abordagem apresenta uma complexidade polinom
 
 \section{Análise dos Resultados}
 
-corrido o ficheiro benchmarks.py, foram obtidos varias medidas de resultados ns q bla bla
+Após a implementação e execução dos algoritmos de pesquisa exaustiva e heurística gulosa, através do ficheiro \textit{benchmarks.py}, foi possível analisar os resultados obtidos, nomeadamente o número de operações básicas, o tempo de execução, a quantidade de diferentes soluções testadas e a precisão da solução da heurística gulosa.
 
-\subsection{análise de numero de operacoes}
+\subsection{Análise do Número de Operações}
 
-grafico do numero de ops, corresponde a complexidade referida formalmente anteriormente
+Pelo facto da complexidade de um algoritmo ser uma medida fundamental para compreender a sua eficiência, e a primeira poder ser medida em termos do número de operações básicas que ele realiza, em função do tamanho do parâmetro de entrada \cite{BS22}, esta análise visa validar as complexidades teóricas previamente discutidas nas secções referentes a cada algoritmo.
 
-GRAFICO
+Para isso é criado um gráfico ...
 
-é de notar q n se nota diferencas de ops consoante o numero de arestas, isto pq o os algoritmos acabam por analisar todas as arestas, mesmo q tenham valor 0
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{../assets/numberOPS.png}
+    \caption{Número de operações básicas realizadas pelos algoritmos de busca exaustiva e heurística gulosa em função do número de vértices, para diferentes grafos.}
+    \label{fig:numeroops}
+\end{figure}
+
+Este gráfico apresenta a quantidade de operações realizadas pelos algoritmos de busca exaustiva e heurística gulosa em função do número de vértices dos grafos analisados. 
+
+O gráfico do número de operações realizadas reflete a complexidade formal dos algoritmos, proporcionando uma análise prática que confirma a relação entre o crescimento do número de operações e a complexidade teórica previamente discutida.
+
+A comparação entre essas duas abordagens permite não apenas visualizar a eficiência relativa
+
+é de notar q n se nota diferencas de ops consoante o numero de arestas, isto pq o os algoritmos acabam por analisar todas as arestas, mesmo q tenham valor 0 fig \ref{fig:numeroops}
+
 
 \subsection{análise de tempo de execução}
 
 para o calculo dos tempos de execucao, foram feitas pelo menos 3 execucoes para cada grafo tendo sido escolhido o tempo minimo entre elas para ter uma maior coerencia/precisao/whatever. para alem disso foi corrido num macbook ...
 
-GRAFICO
+tendo em conta q varia com o ambiente ou assim
 
-ns q verifica se comportamento identeco ao numero de ops, o heuristico é mais rapido e tal
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{../assets/execTIME.png}
+    \caption{Tempo de execução dos algoritmos de busca exaustiva e heurística gulosa em função do número de vértices, para diferentes grafos.}
+    \label{fig:exectime}
+\end{figure}
+
+ns q verifica se comportamento identeco ao numero de ops, o heuristico é mais rapido e tal \ref{fig:exectime}
 
 o exuastivo começa a crescer exponencialmente a partir dos ... vertices, tornando mt lenta a sua execucao
 
@@ -231,7 +254,7 @@ ns q foram ajustadas regressoes para os tempos de execucao, de modo a prever o t
 
 heuristica, best fit para tempo
 
-$a \times n^2 \log n [1.85901534e-08]$
+$1.86 \times 10^{-8} \times n^2 \log n$
 
 NMAE (\%) hugo: 8.376400389731693
 
@@ -239,7 +262,7 @@ and
 
 exuastiva, best fit para tempo
 
-$2^{(n - a)} \times n^2 [24.34775728]$
+$2^{(n - 24.35)} \times n^2$
 
 NMAE (\%) hugo: 2.484738758172613
 
