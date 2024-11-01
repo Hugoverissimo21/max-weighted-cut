@@ -236,11 +236,10 @@ Para além disso, é importante destacar que não há diferenças significativas
 Outra métrica relevante na avaliação de algoritmos é o tempo de execução, uma vez que permite compreender a eficiência das operações e do algoritmo em relação ao tamanho do parâmetro de entrada. Ademais, esta análise possibilita comparações objetivas entre diferentes abordagens, facilitando a escolha do algoritmo mais adequado de acordo com cada situação. 
 % arranjar citacao
 
+Contudo esta métrica pode ser facilmente influenciada por diversos fatores, tais como o ambiente em que o algoritmo é executado, nomeadamente as especificações do \textit{hardware} utilizado, e as características específicas dos grafos. Para minimizar a risco do enviesamento destes resultados, foram realizadas pelo menos três medições para cada grafo, tendo sido escolhido o tempo mínimo entre elas, para ter uma maior coerência nos dados obtidos. Para além disso, todas as execuções foram realizadas num \textit{MacBook Air}, com um processador \textit{Apple M1} e $16GB$ de memória RAM, garantindo a manutenção de um \textit{hardware} constante para a análise.
+% arranjar citacao
 
-
-para o calculo dos tempos de execucao, foram feitas pelo menos 3 execucoes para cada grafo tendo sido escolhido o tempo minimo entre elas para ter uma maior coerencia/precisao/whatever. para alem disso foi corrido num macbook ...
-
-tendo em conta q varia com o ambiente ou assim
+Assim, para a realização desta análise, foi criado um gráfico que ilustra o tempo de execução de cada algoritmo, para diferentes grafos, em função do número de vértices.
 
 \begin{figure}[h]
     \centering
@@ -249,32 +248,21 @@ tendo em conta q varia com o ambiente ou assim
     \label{fig:exectime}
 \end{figure}
 
-ns q verifica se comportamento identeco ao numero de ops, o heuristico é mais rapido e tal \ref{fig:exectime}
+A partir do gráfico, é possível verificar os tempos de execução, em função do número de vértices para o algoritmo de busca exaustiva, a laranja, e para o algoritmo de heurística gulosa, a azul. 
 
-o exuastivo começa a crescer exponencialmente a partir dos ... vertices, tornando mt lenta a sua execucao
+Atendendo ao algoritmo de busca exaustiva, é possível reparar que a partir de $n = 21$, o tempo de execução explode, sendo mais notório o comportamento exponencial do algoritmo. Por outro lado, como seria de esperar, o algoritmo de heurística gulosa apenas apresenta o seu crescimento quadrático, de forma mais notória, a partir de $n \approx 10^4$, revelando-se significativamente mais eficiente que o algoritmo de busca exaustiva em grafos de maiores dimensões.
 
-ns q foram ajustadas regressoes para os tempos de execucao, de modo a prever o tempo de execucao para grafos de maior dimensao
+De modo a prever o tempo de execução para grafos de maior dimensão, foram ajustadas regressões para os tempos de execução de cada algoritmo, de modo a obter funções que modelassem o comportamento dos mesmos. O critério usado para a modelação foi a minimização da medida de erro \textit{Normalized Mean Absolute Error} (NMAE).
 
-heuristica, best fit para tempo
+% Justificação do Termo Exponencial na Busca Exaustiva e q retas foram usadas e tudo mais e pq q deu assim
 
-$1.86 \times 10^{-8} \times n^2 \log n$
+Assim, obteve-se que o tempo de execução do algoritmo de busca exaustiva pode ser modelado pela função $2^{(n - 24.35)} \times n^2$, com um NMAE de $2.48\%$, e o tempo de execução do algoritmo de heurística gulosa pela função $1.86 \times 10^{-8} \times n^2 \log n$, com um NMAE de $8.38\%$.
 
-NMAE (\%) hugo: 8.376400389731693
-
-and
-
-exuastiva, best fit para tempo
-
-$2^{(n - 24.35)} \times n^2$
-
-NMAE (\%) hugo: 2.484738758172613
-
-ns q, boas medidas de erro
-
-é de notas q os tempos de execucao nao sao uma grande medida para determinar a eficiencia dos algoritmos e complexidade e ns q, uma vez que depende de processador para processador. neste caso foram feitos num mac bla bla
-
+Por fim, nota-se que esta métrica não depende do número de arestas, como seria de esperar, uma vez que o tempo de execução é influenciado pelo número de operações básicas realizadas, que por sua vez apenas dependem do número de vértices, e é também importante referir que as regressões obtidas estarão fortemente correlacionadas com o \textit{hardware} utilizado na obtenção dos tempos, pelo que os resultados obtidos podem não ser generalizáveis para outros ambientes.
 
 \subsection{solucoes e precisao}
+
+Em última análise ...
 
 ns q foram testasdas $2^n$ trivialmente, e 1 na heuristica, ns q, bla bla
 
