@@ -215,7 +215,7 @@ Após a implementação e execução dos algoritmos de pesquisa exaustiva e heur
 
 Pelo facto da complexidade de um algoritmo ser uma medida fundamental para compreender a sua eficiência, e a primeira poder ser medida em termos do número de operações básicas que ele realiza, em função do tamanho do parâmetro de entrada \cite{BS22}, esta análise visa validar as complexidades teóricas previamente discutidas nas secções referentes a cada algoritmo.
 
-Para isso é criado um gráfico ...
+Para isso, é criado um gráfico que ilustra o número total de operações básicas executadas, por ambos os algoritmos, para grafos com diferentes números de arestas e de vértices.
 
 \begin{figure}[h]
     \centering
@@ -224,16 +224,19 @@ Para isso é criado um gráfico ...
     \label{fig:numeroops}
 \end{figure}
 
-Este gráfico apresenta a quantidade de operações realizadas pelos algoritmos de busca exaustiva e heurística gulosa em função do número de vértices dos grafos analisados. 
+Pode-se observar no gráfico, a laranja, a informação relativa ao algoritmo de busca exaustiva, especificamente, os resultados para diferentes grafos, representados por pontos, e uma linha que representa a função $g(n) = 2^{n-2} \times n^2$, que modela de forma eficaz o comportamento do número de operações realizadas por este algoritmo. Analogamente, a azul, encontra-se a informação relativa ao algoritmo de heurística gulosa, cujos resultados são modelados pela função $h(n) = n^2 \log n$.
 
-O gráfico do número de operações realizadas reflete a complexidade formal dos algoritmos, proporcionando uma análise prática que confirma a relação entre o crescimento do número de operações e a complexidade teórica previamente discutida.
+Assim, é possível verificar que o número de operações básicas realizadas pelos algoritmos é consistente com as complexidades teóricas previamente referidas: $O(2^n \times n^2)$, para o algortimo de pesquisa exaustiva, e $O(n^2 \log n)$, para o algoritmo de heurística gulosa, reforçando a ideia de que a heurística gulosa é mais eficiente que a busca exaustiva, em termos de complexidade.
 
-A comparação entre essas duas abordagens permite não apenas visualizar a eficiência relativa
-
-é de notar q n se nota diferencas de ops consoante o numero de arestas, isto pq o os algoritmos acabam por analisar todas as arestas, mesmo q tenham valor 0 fig \ref{fig:numeroops}
+Para além disso, é importante destacar que não há diferenças significativas no número de operações realizadas pelos algoritmos em relação ao número de arestas, o que é evidenciado no gráfico pelo facto de grafos com o mesmo número de vértices, mas com diferentes quantidades de arestas, estarem sobrepostos. Isto está relacionado com o facto de ambos os algoritmos analisarem todas as arestas possíveis, ao invés de apenas as arestas com peso diferente de zero, de forma a evitar possíveis problemas relacionados a nós soltos.
 
 
-\subsection{análise de tempo de execução}
+\subsection{Análise de Tempo de Execução}
+
+Outra métrica relevante na avaliação de algoritmos é o tempo de execução, uma vez que permite compreender a eficiência das operações e do algoritmo em relação ao tamanho do parâmetro de entrada. Ademais, esta análise possibilita comparações objetivas entre diferentes abordagens, facilitando a escolha do algoritmo mais adequado de acordo com cada situação. 
+% arranjar citacao
+
+
 
 para o calculo dos tempos de execucao, foram feitas pelo menos 3 execucoes para cada grafo tendo sido escolhido o tempo minimo entre elas para ter uma maior coerencia/precisao/whatever. para alem disso foi corrido num macbook ...
 

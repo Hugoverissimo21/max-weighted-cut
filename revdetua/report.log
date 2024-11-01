@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.20)  1 NOV 2024 09:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.20)  1 NOV 2024 11:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -579,35 +579,36 @@ File: ../assets/numberOPS.png Graphic file (type png)
 <use ../assets/numberOPS.png>
 Package pdftex.def Info: ../assets/numberOPS.png  used on input line 222.
 (pdftex.def)             Requested size: 198.02815pt x 157.11487pt.
+
+Underfull \hbox (badness 2173) in paragraph at lines 229--230
+\OML/cmm/m/it/10 n[]\OT1/cmr/m/n/10 )$, para o al-go-r-timo de pesquisa ex-aus-tiva, e
+ []
+
+
+
 <../assets/execTIME.png, id=29, 349.7868pt x 277.5168pt>
 File: ../assets/execTIME.png Graphic file (type png)
 <use ../assets/execTIME.png>
-Package pdftex.def Info: ../assets/execTIME.png  used on input line 244.
+Package pdftex.def Info: ../assets/execTIME.png  used on input line 247.
 (pdftex.def)             Requested size: 198.02815pt x 157.11487pt.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 280--281
+Underfull \hbox (badness 10000) in paragraph at lines 283--284
 []$\OT1/cmtt/m/n/10 https : / / github . com / 0816keisuke /
  []
 
 
-Underfull \hbox (badness 4168) in paragraph at lines 280--281
+Underfull \hbox (badness 4168) in paragraph at lines 283--284
 \OT1/cmtt/m/n/10 max-[]cut-[]problem-[]benchmark$ \OT1/cmr/m/n/10 e ns q e dps de
  []
 
 
-Underfull \hbox (badness 1629) in paragraph at lines 282--283
+
+[3 <../assets/numberOPS.png> <../assets/execTIME.png>]
+Underfull \hbox (badness 1629) in paragraph at lines 285--286
 []\OT1/cmr/m/n/10 nivel de con-fi-anca de $95%$ em torno da m^^Sedia
  []
 
-(./report.bbl
-
-[3 <../assets/numberOPS.png> <../assets/execTIME.png>])
+(./report.bbl)
 
 
 
@@ -628,7 +629,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  57i,22n,66p,724b,413s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on report.pdf (4 pages, 884678 bytes).
+Output written on report.pdf (4 pages, 886278 bytes).
 PDF statistics:
  127 PDF objects out of 1000 (max. 8388607)
  74 compressed objects within 1 object stream
