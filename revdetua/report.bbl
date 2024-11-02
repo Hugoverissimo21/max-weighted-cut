@@ -27,4 +27,17 @@ J.~Buhler and S.~Wagon,
 \newblock {\em Algorithmic Number Theory}, vol.~44, 2008.
 \newline\textbf{URL:} \url{https://pub.math.leidenuniv.nl/~stevenhagenp/ANTproc/02buhler.pdf}
 
+\bibitem{GS24}
+Yinyu Y. and S.~Karisch,
+\newblock ``Gset: A collection of graphs for benchmarking'',
+\newblock Stanford University, n.d.,
+\newblock Accessed: 2024-11-02.
+\newline\textbf{URL:} \url{https://web.stanford.edu/~yyye/yyye/Gset/}
+
+\bibitem{ME19}
+Y.~Matsuda,
+\newblock ``Benchmarking the max-cut problem on the simulated bifurcation machine'',
+\newblock {\em Toshiba SBM, Medium}, September 2019,
+\newblock https://medium.com/toshiba-sbm/benchmarking-the-max-cut-problem-on-the-simulated-bifurcation-machine-e26e1127c0b0.
+
 \end{thebibliography}

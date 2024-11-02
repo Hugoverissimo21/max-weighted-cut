@@ -42,6 +42,9 @@ abstrato em pt bla bla ns q in English  in English in English in English in Engl
 \begin{resumo}
 Este trabalho apresenta a implementação e comparação de dois métodos para resolver o problema \textit{Max Weight Cut}: um algoritmo exaustivo e uma heurística gulosa. O problema do \textit{Max Weight Cut} consiste em dividir um grafo em dois conjuntos complementares, de forma a que o peso das arestas cortadas seja maximizado. %melhorar e bem melhorado, o de baixo é melhor !
 %Este trabalho compara duas abordagens para o problema do Max Weight Cut em grafos: um algoritmo exaustivo e uma heurística gulosa. O algoritmo exaustivo, embora garanta a solução ótima, apresenta alta complexidade computacional, tornando-se inviável para grafos grandes. Em contrapartida, a heurística gulosa, que seleciona iterativamente as arestas com maior peso, oferece soluções rápidas, mas não ótimas. Os experimentos demonstram que, embora a heurística não alcance a optimalidade em todos os casos, ela se destaca em eficiência e qualidade da solução para instâncias maiores, evidenciando um trade-off importante entre precisão e desempenho.
+
+% This report presents the implementation and comparison of two methods to solve the Maximum Weight Cut problem: an exhaustive algorithm and a greedy heuristic. The Maximum Weight Cut problem involves partitioning an undirected graph into two complementary subsets to maximize the sum of the weights of the edges that are cut. While the exhaustive approach guarantees an optimal solution, its computational complexity renders it impractical for large graphs. Conversely, the greedy heuristic provides quick, though suboptimal, solutions. Experimental results demonstrate the trade-off between accuracy and performance, highlighting the heuristic's efficiency for larger instances.
+
 \end{resumo}
 
 \section{Introdução}
@@ -224,7 +227,7 @@ Para isso, é criado um gráfico que ilustra o número total de operações bás
     \label{fig:numeroops}
 \end{figure}
 
-Pode-se observar no gráfico, a laranja, a informação relativa ao algoritmo de busca exaustiva, especificamente, os resultados para diferentes grafos, representados por pontos, e uma linha que representa a função $g(n) = 2^{n-2} \times n^2$, que modela de forma eficaz o comportamento do número de operações realizadas por este algoritmo. Analogamente, a azul, encontra-se a informação relativa ao algoritmo de heurística gulosa, cujos resultados são modelados pela função $h(n) = n^2 \log n$.
+Pode-se observar no gráfico, a laranja, a informação relativa ao algoritmo de busca exaustiva, especificamente, os resultados para diferentes grafos, representados por pontos, e uma linha que representa a função $e(n) = 2^{n-2} \times n^2$, que modela de forma eficaz o comportamento do número de operações realizadas por este algoritmo. Analogamente, a azul, encontra-se a informação relativa ao algoritmo de heurística gulosa, cujos resultados são modelados pela função $f(n) = n^2 \log n$.
 
 Assim, é possível verificar que o número de operações básicas realizadas pelos algoritmos é consistente com as complexidades teóricas previamente referidas: $O(2^n \times n^2)$, para o algortimo de pesquisa exaustiva, e $O(n^2 \log n)$, para o algoritmo de heurística gulosa, reforçando a ideia de que a heurística gulosa é mais eficiente que a busca exaustiva, em termos de complexidade.
 
@@ -256,27 +259,57 @@ De modo a prever o tempo de execução para grafos de maior dimensão, foram aju
 
 % Justificação do Termo Exponencial na Busca Exaustiva e q retas foram usadas e tudo mais e pq q deu assim
 
-Assim, obteve-se que o tempo de execução do algoritmo de busca exaustiva pode ser modelado pela função $2^{(n - 24.35)} \times n^2$, com um NMAE de $2.48\%$, e o tempo de execução do algoritmo de heurística gulosa pela função $1.86 \times 10^{-8} \times n^2 \log n$, com um NMAE de $8.38\%$.
+Assim, obteve-se que o tempo de execução do algoritmo de busca exaustiva pode ser modelado pela função $g(n) = 2^{(n - 24.35)} \times n^2$, com um NMAE de $2.48\%$, e o tempo de execução do algoritmo de heurística gulosa pela função $h(n) = 1.86 \times 10^{-8} \times n^2 \log n$, com um NMAE de $8.38\%$.
 
 Por fim, nota-se que esta métrica não depende do número de arestas, como seria de esperar, uma vez que o tempo de execução é influenciado pelo número de operações básicas realizadas, que por sua vez apenas dependem do número de vértices, e é também importante referir que as regressões obtidas estarão fortemente correlacionadas com o \textit{hardware} utilizado na obtenção dos tempos, pelo que os resultados obtidos podem não ser generalizáveis para outros ambientes.
 
-\subsection{solucoes e precisao}
+\subsection{Análise de Solucões e Precisão}
 
-Em última análise ...
+Em última análise, foi possível comparar a quantidade de diferentes soluções testadas pelos algoritmos, bem como a precisão da solução da heurística gulosa, para diferentes grafos.
 
-ns q foram testasdas $2^n$ trivialmente, e 1 na heuristica, ns q, bla bla
+\subsubsection{Quatidade de Soluções Testadas}
 
-usou se o conjunto de grafos do gset
+Atendendo ao algoritmo de pesquisa exaustiva, sabendo que esta testa todas as combinações de subconjuntos possíveis, trivialmente, o número de soluções testadas é dado por $2^n$, o que é possível verificar tanto analiticamente, como através da análise dos resultados obtidos.
 
-\url{https://github.com/0816keisuke/max-cut-problem-benchmark} e ns q e dps de fazer a precisao para os meus e para estes, tendo em conta a melhor conhecida .... e ns q mts nós e arestas comparativamente aos q criei e gset sao 69 grafos acho eu...
+Por outro lado, o algoritmo de heurística gulosa, apenas testa uma solução, a que é obtida pela heurística.
 
-nivel de confianca de $95\%$ em torno da média $[0.7631, 0.8120]$ para ter 95\% de confiança que a média real está dentro do intervalo $[0.7631, 0.8120]$.
+Assim, é possível verificar que o número de soluções testadas pelo algoritmo de busca exaustiva é exponencial, enquanto que o número de soluções testadas pelo algoritmo de heurística gulosa é constante, o que reforça a ideia de que a heurística gulosa é mais eficiente, contudo, apenas o primeiro algoritmo garante a solução ótima, ou seja, uma precisão constante de $100\%$.
+
+\subsubsection{Precisão da Heurística Gulosa}
+
+Quanto à precisão da heurística gulosa, esta varia de acordo com o grafo em análise, uma vez que não é garantida a solução ótima. Esta pode variar entre 1 ($100\%$), quando a solução obtida é idêntica à solução ótima, e aproximadamente 0 ($0\%$), quando as escolhas locais da heurística são muito desfavoráveis para o corte global.
+
+De forma a criar um intervalo de confiança para a precisão deste algoritmo, foram comparados os pesos obtidos por este algoritmo com os pesos obtidos pelo algoritmo de busca exaustiva, para grafos até 24 vértices, com 4 diferentes densidades cada, e com os melhores pesos conhecidos para os grafos pertencentes ao conjunto \textit{Gset} \cite{GS24, ME19}, para testar grafos de maiores dimensões, em particular entre $800$ e $10000$ vértices.
+
+Assim, após medir a precisão do algoritmo de heurística gulosa para 153 grafos distintos, obteve-se um intervalo de confiança de $95\%$ em torno da média, permitindo concluir, com $95\%$ de confiança, que a precisão média real do algoritmo está contida no intervalo $[0.7631, 0.8120]$.
+% rever escrita aqui
+
+PODE SE FAZER UM GRAFICO 3D OU ASSIM PARA VER SE DEPENDE DAS ARESTAS (\% e avsoluto) OU DA QNT DE NÓS OU ASSIM
+% pode se fazer e ver como fica
 
 
-\section{Conclusões}
-% ou conclusão
+\section{Conclusão}
+% ou conclusões
 
-dasdsad sn q disse
+exaustivo garante sol otima mas e mt complexo, demora mt tempo, ineficiente ns q para grandes
+
+dai haver necessidade de novos algoritmo
+
+heuristica e bom, mas n garante otimo, tem boa complexidade
+
+ns q fazer ponte para random ?
+
+\begin{comment}
+Neste trabalho, foram exploradas duas abordagens distintas para resolver o problema do \textit{Maximum Weight Cut}: uma pesquisa exaustiva e uma heurística gulosa. A pesquisa exaustiva, embora garanta a obtenção da solução ótima, revelou-se impraticável para grafos de grande dimensão devido à sua complexidade computacional exponencial, evidenciada pelos resultados que mostraram um crescimento drástico no tempo de execução e no número de operações necessárias a partir de um número modesto de vértices.
+
+Por outro lado, a heurística gulosa, que opera em tempo polinomial, demonstrou ser significativamente mais eficiente em termos de tempo de execução e recursos computacionais. No entanto, esta abordagem não garante a otimização da solução, apresentando variações na precisão que dependem da estrutura do grafo em questão. A análise dos resultados indicou que, embora a heurística possa não encontrar a solução ótima em todos os casos, ela é capaz de fornecer soluções de qualidade aceitável rapidamente, especialmente para grafos maiores.
+
+Os experimentos realizados permitiram concluir que existe um trade-off importante entre a precisão da solução e a eficiência do algoritmo. Este equilíbrio é crucial na escolha do método a ser aplicado, dependendo das características específicas do problema em questão e das limitações computacionais enfrentadas.
+
+Para pesquisas futuras, sugerimos a exploração de algoritmos híbridos que possam combinar a robustez da pesquisa exaustiva em subproblemas menores com a eficiência das heurísticas para fornecer soluções aproximadas com garantias de qualidade. Além disso, a aplicação de técnicas de aprendizado de máquina para otimização de heurísticas poderia ser um caminho promissor, potencialmente melhorando a precisão da solução sem um custo computacional excessivo.
+
+Em resumo, a análise realizada fornece insights valiosos sobre a resolução do problema do \textit{Maximum Weight Cut} e destaca a relevância das escolhas metodológicas na obtenção de soluções eficazes em problemas computacionalmente desafiadores.
+\end{comment}
 
 \bibliography{refs}
 
