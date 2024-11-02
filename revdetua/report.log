@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.20)  2 NOV 2024 13:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.20)  2 NOV 2024 15:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -611,14 +611,14 @@ Underfull \hbox (badness 3396) in paragraph at lines 268--269
 
 
 
+<../assets/precHEU.png, id=34, 348.1808pt x 277.5168pt>
+File: ../assets/precHEU.png Graphic file (type png)
+<use ../assets/precHEU.png>
+Package pdftex.def Info: ../assets/precHEU.png  used on input line 282.
+(pdftex.def)             Requested size: 198.02815pt x 157.83897pt.
 
-Underfull \hbox (badness 2080) in paragraph at lines 280--282
-[]\OT1/cmr/m/n/10 Assim, ap^^Sos medir a pre-cis~ao do al-go-ritmo de
- []
 
-Excluding 'comment' comment. (./report.bbl
-
-[4 <../assets/execTIME.png>])
+[4 <../assets/execTIME.png> <../assets/precHEU.png>] Excluding 'comment' comment. (./report.bbl)
 
 
 
@@ -631,18 +631,18 @@ L3 programming layer <2024-07-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 5522 strings out of 473579
- 94120 string characters out of 5728228
+ 5529 strings out of 473579
+ 94320 string characters out of 5728228
  1954957 words of memory out of 5000000
- 28364 multiletter control sequences out of 15000+600000
+ 28371 multiletter control sequences out of 15000+600000
  565456 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  57i,22n,66p,829b,413s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on report.pdf (5 pages, 896785 bytes).
+Output written on report.pdf (5 pages, 1455772 bytes).
 PDF statistics:
- 130 PDF objects out of 1000 (max. 8388607)
+ 132 PDF objects out of 1000 (max. 8388607)
  76 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

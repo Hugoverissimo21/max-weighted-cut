@@ -269,20 +269,24 @@ Atendendo ao algoritmo de pesquisa exaustiva, sabendo que esta testa todas as co
 
 Por outro lado, o algoritmo de heurística gulosa, apenas testa uma solução, a que é obtida pela heurística.
 
-Assim, é possível verificar que o número de soluções testadas pelo algoritmo de busca exaustiva é exponencial, enquanto que o número de soluções testadas pelo algoritmo de heurística gulosa é constante, o que reforça a ideia de que a heurística gulosa é mais eficiente, contudo, apenas o primeiro algoritmo garante a solução ótima, ou seja, uma precisão constante de $100\%$.
+Assim, é possível verificar que o número de soluções testadas pelo algoritmo de busca exaustiva é exponencial, enquanto que o número de soluções testadas pelo algoritmo de heurística gulosa é constante, o que reforça a ideia de que a heurística gulosa é mais eficiente, contudo, apenas o primeiro algoritmo garante a solução ótima, ou seja, uma precisão constante de 1.
 
 \subsubsection{Precisão da Heurística Gulosa}
 
-Quanto à precisão da heurística gulosa, esta varia de acordo com o grafo em análise, uma vez que não é garantida a solução ótima. Esta pode variar entre 1 ($100\%$), quando a solução obtida é idêntica à solução ótima, e aproximadamente 0 ($0\%$), quando as escolhas locais da heurística são muito desfavoráveis para o corte global.
+Quanto à precisão da heurística gulosa, esta varia de acordo com o grafo em análise, uma vez que não é garantida a solução ótima. Esta pode variar entre 1, quando a solução obtida é idêntica à solução ótima, e aproximadamente 0, quando as escolhas locais da heurística são muito desfavoráveis para o corte global.
 
-De forma a criar um intervalo de confiança para a precisão deste algoritmo, foram comparados os pesos obtidos por este algoritmo com os pesos obtidos pelo algoritmo de busca exaustiva, para grafos até 24 vértices, com 4 diferentes densidades cada, e com os melhores pesos conhecidos para os grafos pertencentes ao conjunto \textit{Gset} \cite{GS24, ME19}, para testar grafos de maiores dimensões, em particular entre $800$ e $10000$ vértices.
+De forma a analisar a precisão deste algoritmo, foram comparados os pesos obtidos por este algoritmo com os pesos obtidos pelo algoritmo de busca exaustiva, para grafos até 24 vértices, com 4 diferentes densidades cada, e com os melhores pesos conhecidos para os grafos pertencentes ao conjunto \textit{Gset} \cite{GS24, ME19}, para testar grafos de maiores dimensões, em particular entre $800$ e $10000$ vértices. Calculadas as precisões para cada grafo, foi criado um gráfico para verificar a influência do número de vértices e de arestas na precisão da heurística gulosa.
 
-Assim, após medir a precisão do algoritmo de heurística gulosa para 153 grafos distintos, obteve-se um intervalo de confiança de $95\%$ em torno da média, permitindo concluir, com $95\%$ de confiança, que a precisão média real do algoritmo está contida no intervalo $[0.7631, 0.8120]$.
-% rever escrita aqui
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{../assets/precHEU.png}
+    \caption{Precisão do algoritmo de heurística gulosa em função do número de vértices e de arestas.}
+    \label{fig:precheu}
+\end{figure}
 
-PODE SE FAZER UM GRAFICO 3D OU ASSIM PARA VER SE DEPENDE DAS ARESTAS (\% e avsoluto) OU DA QNT DE NÓS OU ASSIM
-% pode se fazer e ver como fica
+Através da análise do gráfico, pode-se verificar que a precisão do algoritmo de heurística gulosa é influenciada pelo número de vértices e de arestas. Isto deve-se ao facto de que, quanto maior for o grafo, em termos de arestas, mais decisões locais o algoritmo terá de tomar, aumentando a probabilidade de fugir ao ótimo do problema, uma vez que as escolhas locais podem não ser as mais adequadas para o corte global. Para além disso, o número de vértices ao estar diretamente relacionado com o número de arestas, também revela uma influência na precisão.
 
+Por fim, também foi calculada a média da precisão obtida para os grafos testados, sendo esta de aproximadamente $0.788$, revelando a capacidade do algortimo fornecer soluções de qualidade aceitável, especialmente para grafos de menor dimensão. Contudo, esta medida não deverá ser generalizada, visto que os grafos de menores dimensão ($n \leq 24$) foram testados em maior peso, face aos de maiores dimensões (\textit{Gset}).
 
 \section{Conclusão}
 % ou conclusões
