@@ -205,7 +205,7 @@ Portanto, pode-se concluir que esta abordagem apresenta uma complexidade polinom
 
 \section{Análise dos Resultados}
 
-Após a implementação e execução dos algoritmos de pesquisa exaustiva e heurística gulosa, através do ficheiro \textit{benchmarks.py}, foi possível analisar os resultados obtidos, nomeadamente o número de operações básicas, o tempo de execução, a quantidade de diferentes soluções testadas e a precisão da solução da heurística gulosa.
+Após a implementação e execução dos algoritmos de pesquisa exaustiva e pesquisa gulosa, através do ficheiro \textit{benchmarks.py}, foi possível analisar os resultados obtidos, nomeadamente o número de operações básicas, o tempo de execução, a quantidade de diferentes soluções testadas e a precisão da solução da heurística gulosa.
 
 \subsection{Análise do Número de Operações}
 
@@ -222,7 +222,7 @@ Para isso, é criado um gráfico que ilustra o número total de operações bás
 
 Pode-se observar no gráfico, a laranja, a informação relativa ao algoritmo de pesquisa exaustiva, especificamente, os resultados para diferentes grafos, representados por pontos, e uma linha que representa a função $e(n) = 2^{n-2} \times n^2$, que modela de forma eficaz o comportamento do número de operações realizadas por este algoritmo. Analogamente, a azul, encontra-se a informação relativa ao algoritmo de heurística gulosa, cujos resultados são modelados pela função $f(n) = n^2 \log n$.
 
-Assim, é possível verificar que o número de operações básicas realizadas pelos algoritmos é consistente com as complexidades teóricas previamente referidas: $O(2^n \times n^2)$, para o algortimo de pesquisa exaustiva, e $O(n^2 \log n)$, para o algoritmo de heurística gulosa, reforçando a ideia de que a heurística gulosa é mais eficiente que a pesquisa exaustiva, em termos de complexidade.
+Assim, é possível verificar que o número de operações básicas realizadas pelos algoritmos é consistente com as complexidades teóricas previamente referidas: $O(2^n \times n^2)$, para o algortimo de pesquisa exaustiva, e $O(n^2 \log n)$, para o algoritmo de heurística gulosa, reforçando a ideia de que este algoritmo é mais eficiente que a pesquisa exaustiva, em termos de complexidade.
 
 Para além disso, é importante destacar que não há diferenças significativas no número de operações realizadas pelos algoritmos em relação ao número de arestas, o que é evidenciado no gráfico pelo facto de grafos com o mesmo número de vértices, mas com diferentes quantidades de arestas, estarem sobrepostos. Isto está relacionado com o facto de ambos os algoritmos analisarem todas as arestas possíveis, ao invés de apenas as arestas com peso diferente de zero, de forma a evitar possíveis problemas relacionados a nós soltos.
 
@@ -264,7 +264,7 @@ Atendendo ao algoritmo de pesquisa exaustiva, sabendo que esta testa todas as co
 
 Por outro lado, o algoritmo de heurística gulosa, apenas testa uma solução, a que é obtida pela heurística.
 
-Assim, é possível verificar que o número de soluções testadas pelo algoritmo de pesquisa exaustiva é exponencial, enquanto que o número de soluções testadas pelo algoritmo de heurística gulosa é constante, o que reforça a ideia de que a heurística gulosa é mais eficiente, contudo, apenas o primeiro algoritmo garante a solução ótima, ou seja, uma precisão constante de 1.
+Assim, é possível verificar que o número de soluções testadas pelo algoritmo de pesquisa exaustiva é exponencial, enquanto que o número de soluções testadas pelo algoritmo de heurística gulosa é constante, o que reforça a ideia de que este é mais eficiente, contudo, apenas o primeiro garante a solução ótima, ou seja, uma precisão constante de 1.
 
 \subsubsection{Precisão da Heurística Gulosa}
 
