@@ -291,25 +291,13 @@ Por fim, também foi calculada a média da precisão obtida para os grafos testa
 \section{Conclusão}
 % ou conclusões
 
-exaustivo garante sol otima mas e mt complexo, demora mt tempo, ineficiente ns q para grandes
+Em suma, pode-se verificar, que existem várias abordagens para a resolução do problema do \textit{Maximum Weight Cut}, entre elas a pesquisa exaustiva e a heurística gulosa, cada qual com as suas vantagens e desvantagens.
 
-dai haver necessidade de novos algoritmo
+Através da análise dos resultados obtidos com a aplicação destas abordagens, nota-se que o algortimo de pesquisa exaustiva, face à heurística gulosa, tem uma complexidade computacional que aumenta muito mais rapidamente com o número de vértices, em particular, de forma exponencial, enquanto que a heurística gulosa apresenta uma complexidade quadrática, revelando-se mais eficiente para grafos de maior dimensão.
 
-heuristica e bom, mas n garante otimo, tem boa complexidade
+Apesar do algortimo de heurística gulosa ter em seu favor a eficiência, como referido, este não garante a obtenção da solução ótima, pelo que a sua precisão varia de acordo com o grafo em análise, em contrapartida, o algoritmo de pesquisa exaustiva garante a obtenção da solução ótima, pelo que há um compromisso associado à escolha do algoritmo a ser aplicado. Ainda assim, foi possível observar que a heurística gulosa é capaz de fornecer soluções relativamente próximas à ótima, para grafos de menores dimensões, mas perdendo alguma precisão com o aumento do número de arestas.
 
-ns q fazer ponte para random ?
-
-\begin{comment}
-Neste trabalho, foram exploradas duas abordagens distintas para resolver o problema do \textit{Maximum Weight Cut}: uma pesquisa exaustiva e uma heurística gulosa. A pesquisa exaustiva, embora garanta a obtenção da solução ótima, revelou-se impraticável para grafos de grande dimensão devido à sua complexidade computacional exponencial, evidenciada pelos resultados que mostraram um crescimento drástico no tempo de execução e no número de operações necessárias a partir de um número modesto de vértices.
-
-Por outro lado, a heurística gulosa, que opera em tempo polinomial, demonstrou ser significativamente mais eficiente em termos de tempo de execução e recursos computacionais. No entanto, esta abordagem não garante a otimização da solução, apresentando variações na precisão que dependem da estrutura do grafo em questão. A análise dos resultados indicou que, embora a heurística possa não encontrar a solução ótima em todos os casos, ela é capaz de fornecer soluções de qualidade aceitável rapidamente, especialmente para grafos maiores.
-
-Os experimentos realizados permitiram concluir que existe um trade-off importante entre a precisão da solução e a eficiência do algoritmo. Este equilíbrio é crucial na escolha do método a ser aplicado, dependendo das características específicas do problema em questão e das limitações computacionais enfrentadas.
-
-Para pesquisas futuras, sugerimos a exploração de algoritmos híbridos que possam combinar a robustez da pesquisa exaustiva em subproblemas menores com a eficiência das heurísticas para fornecer soluções aproximadas com garantias de qualidade. Além disso, a aplicação de técnicas de aprendizado de máquina para otimização de heurísticas poderia ser um caminho promissor, potencialmente melhorando a precisão da solução sem um custo computacional excessivo.
-
-Em resumo, a análise realizada fornece insights valiosos sobre a resolução do problema do \textit{Maximum Weight Cut} e destaca a relevância das escolhas metodológicas na obtenção de soluções eficazes em problemas computacionalmente desafiadores.
-\end{comment}
+Por fim, este estudo destacou a importância da escolha de abordagens metodológicas na resolução do problema do \textit{Maximum Weight Cut}, enfatizando como as características de cada algortimo influenciam tanto a qualidade das soluções como a eficiência do processo de resolução. Para além disso, embora apenas terem sido aplicados algoritmos determinísticos ao longo deste estudo, é provável que a integração de componentes estocásticas ou até mesmo a aplicação de técnicas de otimização via aprendizagem automática para ajustar as regras heurísticas, possam melhorar os resultados obtidos.
 
 \bibliography{refs}
 
