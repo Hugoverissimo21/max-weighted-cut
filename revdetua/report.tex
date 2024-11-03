@@ -64,6 +64,8 @@ Ao longo deste relatório, serão abordadas duas estratégias para a resolução
 
 % pode se meter aqui foto la do problema
 
+% talvez deva meter algures um dos meus grafos, resolvidos com a cor de cada subset, e depois o corte ficava sem o risco e deixava o peso da aresta na mesma, idk
+
 \section{Metodologia da Análise}
 
 Com o intuito de analisar o problema em destaque, foi utilizada a linguagem de programação \textit{Python}, conhecida pela sua simplicidade e pela vasta variedade de bibliotecas, tais como \textit{networkx}, \textit{numpy} e \textit{itertools}, que facilitaram a implementação das estratégias propostas.
@@ -246,9 +248,7 @@ A partir do gráfico, é possível verificar os tempos de execução, em funçã
 
 Atendendo ao algoritmo de pesquisa exaustiva, é possível reparar que a partir de $n = 21$, o tempo de execução explode, sendo mais notório o comportamento exponencial do algoritmo. Por outro lado, como seria de esperar, o algoritmo de heurística gulosa apenas apresenta o seu crescimento quadrático, de forma mais notória, a partir de $n \approx 10^4$, revelando-se significativamente mais eficiente que o algoritmo de pesquisa exaustiva em grafos de maiores dimensões.
 
-De modo a prever o tempo de execução para grafos de maior dimensão, foram ajustadas regressões para os tempos de execução de cada algoritmo, de modo a obter funções que modelassem o comportamento dos mesmos. O critério usado para a modelação foi a minimização da medida de erro \textit{Normalized Mean Absolute Error} (NMAE).
-
-% Justificação do Termo Exponencial na pesquisa Exaustiva e q retas foram usadas e tudo mais e pq q deu assim
+De modo a prever o tempo de execução para grafos de maior dimensão, foram ajustadas diversas regressões para modelar o comportamento desta métrica para cada algoritmo. Neste processo, foram testados diferentes tipos de regressões, incluindo exponenciais, polinomiais de até segundo grau, logarítmicas e funções que refletissem a complexidade algorítmica do respetivo algoritmo. Para além disso, o critério utilizado para a escolha da melhor regressão foi a minimização da medida de erro conhecida por \textit{Normalized Mean Absolute Error} (NMAE).
 
 Assim, obteve-se que o tempo de execução do algoritmo de pesquisa exaustiva pode ser modelado pela função $g(n) = 2^{(n - 24.35)} \times n^2$, com um NMAE de $2.48\%$, e o tempo de execução do algoritmo de heurística gulosa pela função $h(n) = 1.86 \times 10^{-8} \times n^2 \log n$, com um NMAE de $8.38\%$.
 
