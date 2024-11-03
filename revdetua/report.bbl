@@ -27,6 +27,11 @@ J.~Buhler and S.~Wagon,
 \newblock {\em Algorithmic Number Theory}, vol.~44, 2008.
 \newline\textbf{URL:} \url{https://pub.math.leidenuniv.nl/~stevenhagenp/ANTproc/02buhler.pdf}
 
+\bibitem{NP15}
+Paulo~Eduardo Nogueira and Rivalino Matias~Jr,
+\newblock ``A quantitative study on execution time variability in computing experiments'',
+\newblock 12 2015.
+
 \bibitem{GS24}
 Yinyu Y. and S.~Karisch,
 \newblock ``Gset: A collection of graphs for benchmarking'',
