@@ -1,6 +1,7 @@
 # %%
 import networkx as nx
 
+#teste para os Gset
 G = nx.adjacency_matrix(nx.read_graphml("graphs/0004_500.graphml")).todense()
 G[0,1] = -1
 G[1,0] = -1
@@ -8,14 +9,6 @@ G[1,-1] = -1
 G[-1,1] = -1
 G
 
-# %% [markdown]
-# # exhaustive search
-# 
-# - ~~recurrence em q  - return max({A...}{...D} , {A...D}{...})~~
-# 
-# - iterative - compare {A}{...} {AB}{...} ... {A...}{Z}
-# 
-# penso q ambos seriam 2^n de complexidade pq arvore e n+n-1+n-2+... ?
 
 # %%
 import itertools
@@ -51,22 +44,8 @@ def exhaustive_search(G):
     
     return best, input_set-best, weight, SOLTESTED, OPSEXEC
 
-exhaustive_search(G)
+exhaustive_search(G) # teste a ver se tudo ok
 
-# %% [markdown]
-# # greedy heuristic
-# 
-# pode ser sorted weights e maior é AB, ent S = {A} T = {B}, segudo maior CD, ent S={AC} T={BD}, algo desse genero
-# 
-# mas se segundo maior é AC - S = {A} T = {BC} :: 
-# 
-# - if A and C in S or T: pass
-# 
-# - if A in S or T: C to other
-# 
-# - if neither in: randomly select - could compare to already in vertices but to complex?
-# 
-# complexidade nlogn por causa do sort + n por iterar por cada um - logo complexidade final = nlogn ?
 
 # %%
 def max_weighted_cut_greedy(G):
@@ -130,9 +109,15 @@ def max_weighted_cut_greedy(G):
 
     return S, T, cut_weight, OPSEXEC
 
-max_weighted_cut_greedy(G)
+max_weighted_cut_greedy(G) # teste a ver se tudo ok
 
 # %% [markdown]
+# ---
+# ---
+# ---
+# BENCHMARKS BENCHMARKS BENCHMARKS BENCHMARKS BENCHMARKS BENCHMARKS BENCHMARKS BENCHMARKS BENCHMARKS BENCHMARKS
+# BENCHMARKS BENCHMARKS BENCHMARKS BENCHMARKS BENCHMARKS BENCHMARKS BENCHMARKS BENCHMARKS BENCHMARKS BENCHMARKS
+# BENCHMARKS BENCHMARKS BENCHMARKS BENCHMARKS BENCHMARKS BENCHMARKS BENCHMARKS BENCHMARKS BENCHMARKS BENCHMARKS
 # ---
 # ---
 # ---
@@ -150,7 +135,7 @@ import random
 
 graphs = sorted([f"graphs/{x}" for x in os.listdir("graphs") if x[-7:] == "graphml"])#[20*3:30*4]
 #graphs = []
-random.shuffle(graphs)
+#random.shuffle(graphs)
 
 def countEdges(G):
     return int(np.count_nonzero(G) / 2)
@@ -172,9 +157,9 @@ dateFile = str(datetime.now().strftime("%m%d%H%M%S"))
 for graph in graphs:
     print(f"Solving {graph}: {datetime.now().strftime('%H%M')}")
     G = nx.adjacency_matrix(nx.read_graphml(graph)).todense()
-    #start_time = time.time()
-    #S1, T1, w1, SOLTEST1, OPS1 = exhaustive_search(G)
-    #timeEx = time.time() - start_time
+    start_time = time.time()
+    S1, T1, w1, SOLTEST1, OPS1 = exhaustive_search(G)
+    timeEx = time.time() - start_time
     start_time = time.time()
     S2, T2, w2, OPS2 = max_weighted_cut_greedy(G)
     timeHeu = time.time() - start_time
@@ -182,19 +167,19 @@ for graph in graphs:
     data[("Graph", "name")].append(graph)
     data[("Graph", "n")].append(len(G))
     data[("Graph", "m")].append(countEdges(G))
-    data[("Exhaustive", "#operations")].append(np.nan) #OPS1 #np.nan
-    data[("Exhaustive", "exec_time")].append(np.nan) #timeEx #np.nan
-    data[("Exhaustive", "#solutions tested")].append(np.nan) #SOLTEST1 #np.nan
+    data[("Exhaustive", "#operations")].append(OPS1) #OPS1 #np.nan
+    data[("Exhaustive", "exec_time")].append(timeEx) #timeEx #np.nan
+    data[("Exhaustive", "#solutions tested")].append(SOLTEST1) #SOLTEST1 #np.nan
     data[("Heuristic", "#operations")].append(OPS2)
     data[("Heuristic", "exec_time")].append(timeHeu)
     data[("Heuristic", "#solutions tested")].append(1)
-    data["greedy_prec", " "].append(np.nan) #w2/w1 if w1 != 0 else 1 #np.nan
+    data["greedy_prec", " "].append(w2/w1 if w1 != 0 else 1) #w2/w1 if w1 != 0 else 1 #np.nan
     
 
     df = pd.DataFrame(data)
     df.to_excel(f"results_{dateFile}.xlsx")
 
-print("Done! you wish...")
+print("Done! i hope...")
 
 # %% [markdown]
 # ## Gset Graphs
@@ -257,15 +242,13 @@ for row in df.iterrows():
     df = pd.DataFrame(data)
     df.to_excel(f"results_{dateFile}.xlsx")
 
-print("Done! you wish...")
+print("Done! i hope...")
 
 # %%
-dfs = [pd.read_excel(x, header=[0,1], index_col=0) for x in os.listdir() if x[:7] == "results" and x != "results.xlsx"]
-merged_df = pd.concat(dfs, ignore_index=True)
+#dfs = [pd.read_excel(x, header=[0,1], index_col=0) for x in os.listdir() if x[:7] == "results" and x != "results.xlsx"]
+#merged_df = pd.concat(dfs, ignore_index=True)
 #merged_df.to_excel("Aresults.xlsx")
-
-# %%
-merged_df
+#merged_df
 
 # %%
 
