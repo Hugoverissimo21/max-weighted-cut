@@ -185,8 +185,6 @@ print("Done! i hope...")
 # ## Gset Graphs
 
 # %%
-import pandas as pd
-import numpy as np
 
 data = {
     ("Graph", "name"): [],
