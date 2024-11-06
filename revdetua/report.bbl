@@ -14,18 +14,16 @@ Noga Alon, B{\'e}la Bollob{\'a}s, Michael Krivelevich, and Benny Sudakov,
 Stefan Steinerberger,
 \newblock ``Max-cut via kuramoto-type oscillators'',
 \newblock {\em SIAM Journal on Applied Dynamical Systems}, vol.~22, no.~2, pp.~730--743, 2023.
-\newline\textbf{URL:} \url{https://doi.org/10.1137/21M1432211}
 
 \bibitem{WANG23}
 Jianan Wang, Chuixiong Wu, and Fen Zuo,
 \newblock ``More on greedy construction heuristics for the max-cut problem'', 2023.
-\newline\textbf{URL:} \url{https://arxiv.org/abs/2312.10895}
 
 \bibitem{BS22}
 J.~Buhler and S.~Wagon,
 \newblock ``Basic algorithms in number theory'',
-\newblock {\em Algorithmic Number Theory}, vol.~44, 2008.
-\newline\textbf{URL:} \url{https://pub.math.leidenuniv.nl/~stevenhagenp/ANTproc/02buhler.pdf}
+\newblock {\em Algorithmic Number Theory}, vol.~44, 2008,
+\newblock https://pub.math.leidenuniv.nl/ \~stevenhagenp/ANTproc/02buhler.pdf. Accessed: 2024-11-02.
 
 \bibitem{NP15}
 Paulo~Eduardo Nogueira and Rivalino Matias~Jr,
@@ -36,13 +34,12 @@ Paulo~Eduardo Nogueira and Rivalino Matias~Jr,
 Yinyu Y. and S.~Karisch,
 \newblock ``Gset: A collection of graphs for benchmarking'',
 \newblock Stanford University, n.d.,
-\newblock Accessed: 2024-11-02.
-\newline\textbf{URL:} \url{https://web.stanford.edu/~yyye/yyye/Gset/}
+\newblock https://web.stanford.edu/~yyye/yyye/Gset/. Accessed: 2024-11-02.
 
 \bibitem{ME19}
 Y.~Matsuda,
 \newblock ``Benchmarking the max-cut problem on the simulated bifurcation machine'',
 \newblock {\em Toshiba SBM, Medium}, September 2019,
-\newblock https://medium.com/toshiba-sbm/benchmarking-the-max-cut-problem-on-the-simulated-bifurcation-machine-e26e1127c0b0.
+\newblock https://medium.com/toshiba-sbm/benchmarking-the-max-cut-problem-on-the-simulated-bifurcation-machine-e26e1127c0b0. Accessed: 2024-11-02.
 
 \end{thebibliography}
