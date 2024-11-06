@@ -113,11 +113,11 @@ OUTPUT report.pdf
 INPUT ../assets/problem.png
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
 INPUT /usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map
-INPUT ../graph.png
-INPUT ../graph.png
-INPUT ../graph.png
-INPUT ../graph.png
-INPUT ../graph.png
+INPUT ../assets/exampGraph.png
+INPUT ../assets/exampGraph.png
+INPUT ../assets/exampGraph.png
+INPUT ../assets/exampGraph.png
+INPUT ../assets/exampGraph.png
 INPUT /usr/local/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/base/omscmr.fd
 INPUT /usr/local/texlive/2024/texmf-dist/tex/latex/base/omscmr.fd
