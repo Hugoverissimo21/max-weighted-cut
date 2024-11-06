@@ -21,7 +21,6 @@
 \usepackage{graphicx}
 \usepackage[justification=centering]{caption}
 \floatname{algorithm}{Algoritmo}
-\usepackage{float}
 %-------------------------------------
 % compiling:
 % Recipe: xelatex
@@ -59,19 +58,18 @@ Este relatório visa explorar o problema \textit{Maximum Weight Cut}, conhecido 
     \end{split}
 \end{equation*}
 
-Este problema também pode ser traduzido numa ilustração gráfica, como se pode verificar na figura seguinte, onde os vértices do grafo estão divididos em dois subconjuntos, $S$ e $T$, e as arestas que os unem são destacadas, evidenciando o objetivo de maximizar a soma dos pesos dessas arestas.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.35\textwidth]{../assets/problem.png}
-    \caption{Decomposição dos vértices de um grafo em dois subconjuntos com o objetivo de maximizar o peso das arestas que os ligam \cite{SS23}.}
-    \label{fig:problem}
-\end{figure}
-
 Apesar do problema oposto, conhecido como \textit{Minimum Weight Cut}, ter um algoritmo de resolução em tempo polinomial, em certas condições, o problema \textit{Maximum Weight Cut} não o possui, sendo um problema \textit{NP-Hard}. Isto implica que à medida que o tamanho do grafo aumenta, encontrar soluções exatas para este problema tornam-se computacionalmente caras \cite{SS23}.
 
 Ao longo deste relatório, serão abordadas duas estratégias para a resolução do problema: uma pesquisa exaustiva e uma heurística gulosa.
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{../graph.png}
+    \caption{Tempo de execução dos algoritmos de pesquisa exaustiva e heurística gulosa em.}
+    \label{fig:exectime}
+\end{figure}
+
+% pode se meter aqui foto la do problema
 
 % talvez deva meter algures um dos meus grafos, resolvidos com a cor de cada subset, e depois o corte ficava sem o risco e deixava o peso da aresta na mesma, idk
 
@@ -89,19 +87,13 @@ O ficheiro \textit{graphs.py} teve como propósito gerar vários grafos aleatór
 
 O ficheiro \textit{benchmarks.py} foi o responsável por executar as estratégias de resolução do problema, nomeadamente a pesquisa exaustiva e a heurística gulosa, para vários grafos gerados, guardando os resultados obtidos, tais como tempo de execução, número de operações básicas e precisão do resultado da heurística gulosa, para posterior análise.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.4\textwidth]{../graph.png}
-    \caption{Tempo de execução dos algoritmos de pesquisa exaustiva e heurística gulosa em}
-    \label{fig:exmpgraph2}
-\end{figure}
-
+%meter imagem de um dos grafos com nome na fig e isso?
 
 \section{Algoritmo de Pesquisa Exaustiva}
 
 Tendo em conta o algoritmo de pesquisa exaustiva, este visa gerar todas as combinações possíveis de subconjuntos de $V$ e, para cada subconjunto, calcular o peso do corte e comparar com o melhor corte encontrado até ao momento, ou seja, o algoritmo tem duas fases: a geração de todos os subconjuntos possíveis e a avaliação de cada subconjunto. Este estratégia garante a obtenção da solução ótima, no entanto, o seu custo computacional é exponencial, sendo impraticável para grafos de grande dimensão. Este algoritmo pode ser representado em pseudocódigo da seguinte maneira:
 
-\begin{algorithm}[H]
+\begin{algorithm}
     \raggedright
     \textbf{Entrada:} matriz de adjacência \textit{G} \\
     \textbf{Saída:} subconjuntos \textit{S} e \textit{T}, peso do corte \textit{weight} \\
@@ -154,7 +146,7 @@ Atendendo ao algoritmo de pesquisa gulosa com heurísticas, este segue uma abord
 
 Para o desenvolvimento este algoritmo, foi necessária uma análise a diversas regras heurísticas \cite{WANG23}, com o objetivo de determinar a melhor estratégia a seguir. Desta forma, a estratégia escolhida pode ser examinada em detalhe no pseudocódigo apresentado a seguir.
 
-\begin{algorithm}[H]
+\begin{algorithm}
     \raggedright
     \textbf{Entrada:} matriz de adjacência \textit{G} \\
     \textbf{Saída:} subconjuntos \textit{S} e \textit{T}, peso do corte \textit{cut\_weight} \\
