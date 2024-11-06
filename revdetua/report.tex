@@ -27,6 +27,9 @@
 % Recipe: xelatex
 % Recipe: pdflatex -> bibtex -> pdflatex -> pdflatex
 % Recipe: xelatex
+%
+% notas:
+% rever se algorimtos e imagens estão onde devem
 %-------------------------------------
 \begin{document}
 
@@ -72,9 +75,6 @@ Apesar do problema oposto, conhecido como \textit{Minimum Weight Cut}, ter um al
 
 Ao longo deste relatório, serão abordadas duas estratégias para a resolução do problema: uma pesquisa exaustiva e uma heurística gulosa.
 
-
-% talvez deva meter algures um dos meus grafos, resolvidos com a cor de cada subset, e depois o corte ficava sem o risco e deixava o peso da aresta na mesma, idk
-
 \section{Metodologia da Análise}
 
 Com o intuito de analisar o problema em destaque, foi utilizada a linguagem de programação \textit{Python}, conhecida pela sua simplicidade e pela vasta variedade de bibliotecas, tais como \textit{networkx}, \textit{numpy} e \textit{itertools}, que facilitaram a implementação das estratégias propostas.
@@ -92,7 +92,7 @@ O ficheiro \textit{benchmarks.py} foi o responsável por executar as estratégia
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.4\textwidth]{../assets/exampGraph.png}
-    \caption{Exemplo de aplicação dos algoritmos de pesquisa exaustiva (na parte superior) e heurística gulosa (na parte inferior) a um dos grafos gerados (\textit{0005\_500.graphml}). Apenas as arestas visíveis são consideradas no cálculo do peso do corte.}  
+    \caption{Visualização da aplicação dos algoritmos de pesquisa exaustiva (na parte superior) e heurística gulosa (na parte inferior) a um dos grafos gerados (\textit{0005\_500.graphml}). Apenas as arestas visíveis são consideradas no cálculo do peso do corte.}
     \label{fig:exmpgraph2}
 \end{figure}
 
@@ -208,9 +208,6 @@ Para o desenvolvimento este algoritmo, foi necessária uma análise a diversas r
     
     \end{algorithmic}
 \end{algorithm}
-
-%\pagebreak
-% pq texto estava a ficar antes do alg para ter mais texto idk why cuidado
 
 Pode-se observar que o algortimo tem duas etapas: uma de pré-processamento, onde são extraídas as arestas e os seus pesos e ordenados de forma decrescente, e outra de processamento, onde as arestas são processadas de acordo com as regras heurísticas definidas.
 
