@@ -213,7 +213,7 @@ Para o desenvolvimento deste algoritmo, foi necessária uma análise a diversas 
 
 Pode-se observar que o algortimo tem duas etapas: uma de pré-processamento, onde são extraídas as arestas e os seus pesos e ordenados de forma decrescente, e outra de processamento, onde as arestas são processadas de acordo com as regras heurísticas definidas.
 
-A primeira etapa deste algoritmo é a mais custosa em termos de complexidade, sendo $O(n^2 + m \log m)$, por percorrer toda a matriz de adjacência ($n \times n$) e ordernar de forma descrescente as arestas. Pelo facto do grafo ter no total $0.5 \cdot n(n-1)$ arestas, contabilizando as nulas, o termo $m \log m$ torna-se dominante, pelo que a complexidade da etapa pode ser escrita como $O(n^2 \log n)$.
+A primeira etapa deste algoritmo é a mais custosa em termos de complexidade, sendo $O(n^2 + m \log m)$, por percorrer toda a matriz de adjacência ($n \times n$) e ordernar de forma descrescente as arestas. Pelo facto do grafo ter no total $0.5 \times n(n-1)$ arestas, contabilizando as nulas, o termo $m \log m$ torna-se dominante, pelo que a complexidade da etapa pode ser escrita como $O(n^2 \log n)$.
 
 A segunda etapa, por sua vez, tem uma complexidade $O(m)$, dado que que percorre todas as arestas do grafo, nulas inclusive, podendo ser escrita como $O(n^2)$.
 
