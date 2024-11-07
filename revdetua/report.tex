@@ -44,14 +44,14 @@ This report presents the implementation and comparison of two methods for solvin
 \end{abstract}
 
 \begin{resumo}
-Este relatório apresenta a implementação e comparação de dois métodos para resolver o problema \textit{Maximum Weight Cut}: uma pesquisa exaustiva e uma heurística gulosa. O problema \textit{Maximum Weight Cut} consiste em dividir um grafo em dois subconjuntos complementares, de forma a maximizar a soma dos pesos das arestas que ligam os dois subconjuntos. Enquanto a pesquisa exaustiva garante uma solução ótima, a sua complexidade computacional torna-a impraticável para grafos de grande dimensão. Por outro lado, a heurística gulosa fornece soluções rápidas, embora subótimas. Os resultados experimentais demonstram o compromisso entre precisão e desempenho, destacando a eficiência da heurística para grafos com maior número de vértices.
+Este relatório apresenta a implementação e comparação de dois métodos para resolver o problema \textit{Maximum Weight Cut}: uma pesquisa exaustiva e uma heurística gulosa. O problema \textit{Maximum Weight Cut} consiste em dividir um grafo em dois subconjuntos complementares, de forma a maximizar a soma dos pesos das arestas que ligam os dois subconjuntos. A pesquisa exaustiva garante uma solução ótima, mas a sua complexidade computacional torna-a impraticável para grafos de grande dimensão. Por outro lado, a heurística gulosa fornece soluções rápidas, embora subótimas. Os resultados experimentais demonstram o compromisso entre precisão e desempenho, destacando a eficiência da heurística para grafos com maior número de vértices.
 \end{resumo}
 
 \section{Introdução}
 
 Atualmente, os problemas em grafos são amplamente estudados, pelo facto de terem a capacidade de modelar diversas situações reais, desde as mais palpáveis, como redes de computadores (problema \textit{Minimum Spanning Tree}) até às mais abstratas, como física estatística (problema \textit{Maximum Weight Cut}) \cite{WANG10}.
 
-Este relatório visa explorar o problema \textit{Maximum Weight Cut}, conhecido em português por Corte de Peso Máximo, que consiste na divisão de um grafo não direcionado, $G(V, E)$, onde $|V| = n$ vértices e $|E| = m$ arestas de peso $w_{i,j} \geq 0\ \forall\ (i,j) \in E$, em dois subconjuntos complementares, $S$ e $T$, de forma a maximizar a soma dos pesos das arestas que ligam os dois conjuntos \cite{SC03}, isto é
+Este relatório visa explorar o problema \textit{Maximum Weight Cut}, conhecido em português por Corte de Peso Máximo, que consiste na divisão de um grafo não direcionado, $G(V, E)$, onde $|V| = n$ vértices e $|E| = m$ arestas, de pesos $w_{i,j}\ \forall\ (i,j) \in E$, em dois subconjuntos complementares, $S$ e $T$, de forma a maximizar a soma dos pesos das arestas que ligam os dois subconjuntos \cite{SC03}, isto é
 \begin{equation*}
     \begin{split}
         \max \sum_{i \in S,\ j \in T} w_{i,j} \\ 
@@ -62,7 +62,7 @@ Este relatório visa explorar o problema \textit{Maximum Weight Cut}, conhecido 
     \end{split}
 \end{equation*}
 
-Este problema também pode ser traduzido numa ilustração gráfica, como se pode verificar na figura seguinte, onde os vértices do grafo estão divididos em dois subconjuntos, $S$ e $T$, e as arestas que os unem são destacadas, evidenciando o objetivo de maximizar a soma dos pesos dessas arestas.
+Este problema também pode ser traduzido numa ilustração gráfica, como se pode verificar na figura \ref{fig:problem}, onde os vértices do grafo estão divididos em dois subconjuntos, $S$ e $T$, e as arestas que os unem são destacadas, evidenciando o objetivo de maximizar a soma dos pesos dessas arestas.
 
 \begin{figure}[h]
     \centering
@@ -71,7 +71,7 @@ Este problema também pode ser traduzido numa ilustração gráfica, como se pod
     \label{fig:problem}
 \end{figure}
 
-Apesar do problema oposto, conhecido como \textit{Minimum Weight Cut}, ter um algoritmo de resolução em tempo polinomial, em certas condições, o problema \textit{Maximum Weight Cut} não o possui, sendo um problema \textit{NP-Hard}. Isto implica que à medida que o tamanho do grafo aumenta, encontrar soluções exatas para este problema tornam-se computacionalmente caras \cite{SS23}.
+Apesar do problema oposto, conhecido como \textit{Minimum Weight Cut}, ter um algoritmo de resolução em tempo polinomial, em certas condições, o problema \textit{Maximum Weight Cut} não o possui, sendo um problema \textit{NP-Hard}. Isto implica que à medida que o tamanho do grafo aumenta, encontrar soluções exatas para o problema torna-se computacionalmente mais caro \cite{SS23}.
 
 Ao longo deste relatório, serão abordadas duas estratégias para a resolução do problema: uma pesquisa exaustiva e uma heurística gulosa.
 
@@ -79,7 +79,7 @@ Ao longo deste relatório, serão abordadas duas estratégias para a resolução
 
 Com o intuito de analisar o problema em destaque, foi utilizada a linguagem de programação \textit{Python}, conhecida pela sua simplicidade e pela vasta variedade de bibliotecas, tais como \textit{networkx}, \textit{numpy} e \textit{itertools}, que facilitaram a implementação das estratégias propostas.
 
-A análise desenvolvida pode ser dividida em 2 ficheiros principais, sem desmerecer o uso de ficheiros auxiliares, sendo os primeiros:
+Sem desmerecer o uso de ficheiros auxiliares, a análise desenvolvida pode ser dividida em 2 ficheiros principais, sendo estes:
 \begin{verbatim}
     $ python3 graphs.py
     $ python3 benchmarks.py
@@ -99,7 +99,9 @@ O ficheiro \textit{benchmarks.py} foi o responsável por executar as estratégia
 
 \section{Algoritmo de Pesquisa Exaustiva}
 
-Tendo em conta o algoritmo de pesquisa exaustiva, este visa gerar todas as combinações possíveis de subconjuntos de $V$ e, para cada subconjunto, calcular o peso do corte e comparar com o melhor corte encontrado até ao momento, ou seja, o algoritmo tem duas fases: a geração de todos os subconjuntos possíveis e a avaliação de cada subconjunto. Este estratégia garante a obtenção da solução ótima, no entanto, o seu custo computacional é exponencial, sendo impraticável para grafos de grande dimensão. Este algoritmo pode ser representado em pseudocódigo da seguinte maneira:
+Tendo em conta o algoritmo de pesquisa exaustiva, este visa gerar todas as combinações possíveis de subconjuntos de $V$ e, para cada subconjunto, calcular o peso do corte e comparar com o melhor corte encontrado até ao momento, ou seja, o algoritmo tem duas fases: a geração de todos os subconjuntos possíveis e a avaliação de cada subconjunto. Esta estratégia garante a obtenção da solução ótima, todavia, o seu custo computacional é exponencial, sendo impraticável para grafos de grande dimensão.
+
+Este algoritmo pode ser representado em pseudocódigo da seguinte maneira:
 
 \begin{algorithm}[H]
     \raggedright
@@ -152,7 +154,7 @@ Assim, verifica-se que a complexidade deste algoritmo é exponencial com um fato
 
 Atendendo ao algoritmo de pesquisa gulosa com heurísticas, este segue uma abordagem diferente, uma vez que não garante a obtenção da solução ótima, mas sim uma solução aproximada, em tempo polinomial. Isto acontece devido à natureza do algoritmo, que em cada etapa faz escolhas localmente ótimas, sem considerar o impacto global da escolha, na esperança de alcançar um ótimo global.
 
-Para o desenvolvimento este algoritmo, foi necessária uma análise a diversas regras heurísticas \cite{WANG23}, com o objetivo de determinar a melhor estratégia a seguir. Desta forma, a estratégia escolhida pode ser examinada em detalhe no pseudocódigo apresentado a seguir.
+Para o desenvolvimento deste algoritmo, foi necessária uma análise a diversas regras heurísticas \cite{WANG23}, com o objetivo de determinar a melhor estratégia a seguir. Desta forma, a estratégia escolhida pode ser examinada em detalhe no pseudocódigo apresentado a seguir.
 
 \begin{algorithm}[H]
     \raggedright
@@ -211,7 +213,7 @@ Para o desenvolvimento este algoritmo, foi necessária uma análise a diversas r
 
 Pode-se observar que o algortimo tem duas etapas: uma de pré-processamento, onde são extraídas as arestas e os seus pesos e ordenados de forma decrescente, e outra de processamento, onde as arestas são processadas de acordo com as regras heurísticas definidas.
 
-A primeira etapa deste algoritmo é a mais custosa em termos de complexidade, sendo $O(n^2 + m \log m)$. Sendo que o grafo tem no total $0.5 \cdot n(n-1)$ arestas, contabilizando as nulas, o termo $m \log m$ torna-se dominante, pelo que a complexidade da etapa possa ser escrita como $O(n^2 \log n)$.
+A primeira etapa deste algoritmo é a mais custosa em termos de complexidade, sendo $O(n^2 + m \log m)$. Pelo facto do grafo ter no total $0.5 \cdot n(n-1)$ arestas, contabilizando as nulas, o termo $m \log m$ torna-se dominante, pelo que a complexidade da etapa pode ser escrita como $O(n^2 \log n)$.
 
 A segunda etapa, por sua vez, tem uma complexidade $O(m)$, dado que que percorre todas as arestas do grafo, nulas inclusive, podendo ser escrita como $O(n^2)$.
 
@@ -225,7 +227,7 @@ Após a implementação e execução dos algoritmos de pesquisa exaustiva e pesq
 
 Pelo facto da complexidade de um algoritmo ser uma medida fundamental para compreender a sua eficiência, e a primeira poder ser medida em termos do número de operações básicas que ele realiza, em função do tamanho do parâmetro de entrada \cite{BS22}, esta análise visa validar as complexidades teóricas previamente discutidas nas secções referentes a cada algoritmo.
 
-Para isso, é criado um gráfico que ilustra o número total de operações básicas executadas, por ambos os algoritmos, para grafos com diferentes números de arestas e de vértices.
+Para isso, é criado um gráfico (fig. \ref{fig:numeroops}) que ilustra o número total de operações básicas executadas, por ambos os algoritmos, para grafos com diferentes números de arestas e de vértices.
 
 \begin{figure}[h]
     \centering
@@ -234,20 +236,20 @@ Para isso, é criado um gráfico que ilustra o número total de operações bás
     \label{fig:numeroops}
 \end{figure}
 
-Pode-se observar no gráfico, a laranja, a informação relativa ao algoritmo de pesquisa exaustiva, especificamente, os resultados para diferentes grafos, representados por pontos, e uma linha que representa a função $e(n) = 2^{n-2} \times n^2$, que modela de forma eficaz o comportamento do número de operações realizadas por este algoritmo. Analogamente, a azul, encontra-se a informação relativa ao algoritmo de heurística gulosa, cujos resultados são modelados pela função $f(n) = n^2 \log n$.
+Pode-se observar no gráfico acima, a laranja, a informação relativa ao algoritmo de pesquisa exaustiva, especificamente, os resultados para diferentes grafos, representados por pontos, e uma linha que representa a função $e(n) = 2^{n-2} \times n^2$, que modela de forma eficaz o comportamento do número de operações realizadas por este algoritmo. Analogamente, a azul, encontra-se a informação relativa ao algoritmo de heurística gulosa, cujos resultados são modelados pela função $f(n) = n^2 \log n$.
 
-Assim, é possível verificar que o número de operações básicas realizadas pelos algoritmos é consistente com as complexidades teóricas previamente referidas: $O(2^n \times n^2)$, para o algortimo de pesquisa exaustiva, e $O(n^2 \log n)$, para o algoritmo de heurística gulosa, reforçando a ideia de que este algoritmo é mais eficiente que a pesquisa exaustiva, em termos de complexidade.
+Assim, é possível verificar que o número de operações básicas realizadas pelos algoritmos é consistente com as complexidades teóricas previamente referidas: $O(2^n \times n^2)$, para o algortimo de pesquisa exaustiva, e $O(n^2 \log n)$, para o algoritmo de heurística gulosa, reforçando a ideia que este algoritmo é mais eficiente que a pesquisa exaustiva, em termos de complexidade.
 
-Para além disso, é importante destacar que não há diferenças significativas no número de operações realizadas pelos algoritmos em relação ao número de arestas, o que é evidenciado no gráfico pelo facto de grafos com o mesmo número de vértices, mas com diferentes quantidades de arestas, estarem sobrepostos. Isto está relacionado com o facto de ambos os algoritmos analisarem todas as arestas possíveis, ao invés de apenas as arestas com peso diferente de zero, de forma a evitar possíveis problemas relacionados a nós soltos.
+Para além disso, é importante destacar que não há diferenças significativas no número de operações realizadas pelos algoritmos em relação ao número de arestas, o que é evidenciado no gráfico (fig. \ref{fig:numeroops}), dado que grafos com o mesmo número de vértices, mas com diferentes quantidades de arestas, estão sobrepostos. Isto está relacionado com o facto de ambos os algoritmos analisarem todas as arestas possíveis, ao invés de apenas as arestas com peso diferente de zero, de forma a evitar possíveis problemas relacionados a nós soltos.
 
 
 \subsection{Análise de Tempo de Execução}
 
 Outra métrica relevante na avaliação de algoritmos é o tempo de execução, uma vez que permite compreender a eficiência das operações e do algoritmo em relação ao tamanho do parâmetro de entrada. Ademais, esta análise possibilita comparações objetivas entre diferentes abordagens, facilitando a escolha do algoritmo mais adequado de acordo com cada situação.
 
-Contudo esta métrica pode ser facilmente influenciada por diversos fatores, tais como o ambiente em que o algoritmo é executado, nomeadamente as especificações do \textit{hardware} utilizado, e as características específicas dos grafos \cite{NP15}. Para minimizar a risco do enviesamento destes resultados, foram realizadas pelo menos três medições para cada grafo, tendo sido escolhido o tempo mínimo entre elas, para ter uma maior coerência nos dados obtidos. Para além disso, todas as execuções foram realizadas num \textit{MacBook Air}, com um processador \textit{Apple M1} e $16GB$ de memória RAM, garantindo a manutenção de um \textit{hardware} constante para a análise.
+Contudo, esta métrica pode ser facilmente influenciada por diversos fatores, tais como o ambiente em que o algoritmo é executado, nomeadamente as especificações do \textit{hardware} utilizado, e as características específicas dos grafos \cite{NP15}. Para minimizar a risco do enviesamento destes resultados, foram realizadas pelo menos três medições para cada grafo, tendo sido escolhido o tempo mínimo entre elas, para ter uma maior coerência nos dados obtidos. Para além disso, todas as execuções foram realizadas num \textit{MacBook Air}, com um processador \textit{Apple M1} e $16GB$ de memória RAM, garantindo a manutenção de um \textit{hardware} constante para a análise.
 
-Assim, para a realização desta análise, foi criado um gráfico que ilustra o tempo de execução de cada algoritmo, para diferentes grafos, em função do número de vértices.
+Assim, para a realização desta análise, foi criado um gráfico (fig. \ref{fig:exectime}) que ilustra o tempo de execução de cada algoritmo, para diferentes grafos, em função do número de vértices.
 
 \begin{figure}[h]
     \centering
@@ -256,27 +258,27 @@ Assim, para a realização desta análise, foi criado um gráfico que ilustra o 
     \label{fig:exectime}
 \end{figure}
 
-A partir do gráfico, é possível verificar os tempos de execução, em função do número de vértices para o algoritmo de pesquisa exaustiva, a laranja, e para o algoritmo de heurística gulosa, a azul. 
+A partir do gráfico anterior, é possível verificar os tempos de execução, em função do número de vértices para o algoritmo de pesquisa exaustiva, a laranja, e para o algoritmo de heurística gulosa, a azul. 
 
 Atendendo ao algoritmo de pesquisa exaustiva, é possível reparar que a partir de $n = 21$, o tempo de execução explode, sendo mais notório o comportamento exponencial do algoritmo. Por outro lado, como seria de esperar, o algoritmo de heurística gulosa apenas apresenta o seu crescimento quadrático, de forma mais notória, a partir de $n \approx 10^4$, revelando-se significativamente mais eficiente que o algoritmo de pesquisa exaustiva em grafos de maiores dimensões.
 
-De modo a prever o tempo de execução para grafos de maior dimensão, foram ajustadas diversas regressões para modelar o comportamento desta métrica para cada algoritmo. Neste processo, foram testados diferentes tipos de regressões, incluindo exponenciais, polinomiais de até segundo grau, logarítmicas e funções que refletissem a complexidade algorítmica do respetivo algoritmo. Para além disso, o critério utilizado para a escolha da melhor regressão foi a minimização da medida de erro conhecida por \textit{Normalized Mean Absolute Error} (NMAE).
+De modo a prever o tempo de execução para grafos de maior dimensão, foram ajustadas diversas regressões para modelar o comportamento desta métrica para cada algoritmo. Neste processo, foram testados diferentes tipos de regressões, incluindo exponenciais, polinomiais até segundo grau, logarítmicas e funções que refletissem a complexidade algorítmica do respetivo algoritmo. Para além disso, o critério utilizado para a escolha da melhor regressão foi a minimização da medida de erro conhecida por \textit{Normalized Mean Absolute Error} (NMAE).
 
 Assim, obteve-se que o tempo de execução do algoritmo de pesquisa exaustiva pode ser modelado pela função $g(n) = 2^{(n - 24.35)} \times n^2$, com um NMAE de $2.48\%$, e o tempo de execução do algoritmo de heurística gulosa pela função $h(n) = 1.86 \times 10^{-8} \times n^2 \log n$, com um NMAE de $8.38\%$.
 
-Por fim, nota-se que esta métrica não depende do número de arestas, como seria de esperar, uma vez que o tempo de execução é influenciado pelo número de operações básicas realizadas, que por sua vez apenas dependem do número de vértices, e é também importante referir que as regressões obtidas estarão fortemente correlacionadas com o \textit{hardware} utilizado na obtenção dos tempos, pelo que os resultados obtidos podem não ser generalizáveis para outros ambientes.
+Por fim, nota-se que esta métrica não depende do número de arestas, como seria de esperar, uma vez que o tempo de execução é influenciado pelo número de operações básicas realizadas que, por sua vez, apenas dependem do número de vértices. Importa também referir que as regressões obtidas estão fortemente correlacionadas com o \textit{hardware} utilizado na obtenção dos tempos, pelo que os resultados obtidos podem não ser generalizáveis para outros ambientes.
 
-\subsection{Análise de Solucões e Precisão}
+\subsection{Análise de Soluções e Precisão}
 
 Em última análise, foi possível comparar a quantidade de diferentes soluções testadas pelos algoritmos, bem como a precisão da solução da heurística gulosa, para diferentes grafos.
 
-\subsubsection{Quatidade de Soluções Testadas}
+\subsubsection{Quantidade de Soluções Testadas}
 
-Atendendo ao algoritmo de pesquisa exaustiva, sabendo que esta testa todas as combinações de subconjuntos possíveis, trivialmente, o número de soluções testadas é dado por $2^n$, o que é possível verificar tanto analiticamente, como através da análise dos resultados obtidos.
+Atendendo ao algoritmo de pesquisa exaustiva, sabendo que este testa todas as combinações de subconjuntos possíveis, trivialmente, o número de soluções testadas é dado por $2^n$, o que é possível verificar tanto analiticamente, como através da análise dos resultados obtidos.
 
 Por outro lado, o algoritmo de heurística gulosa, apenas testa uma solução, a que é obtida pela heurística.
 
-Assim, é possível verificar que o número de soluções testadas pelo algoritmo de pesquisa exaustiva é exponencial, enquanto que o número de soluções testadas pelo algoritmo de heurística gulosa é constante, o que reforça a ideia de que este é mais eficiente, contudo, apenas o primeiro garante a solução ótima, ou seja, uma precisão constante de 1.
+Assim, é possível verificar que o número de soluções testadas pelo algoritmo de pesquisa exaustiva é exponencial, enquanto que o número de soluções testadas pelo algoritmo de heurística gulosa é constante, reforçando assim a ideia de que este último é mais eficiente. Contudo, apenas o primeiro garante a solução ótima, ou seja, uma precisão constante de 1.
 
 \subsubsection{Precisão da Heurística Gulosa}
 
@@ -297,13 +299,13 @@ Por fim, também foi calculada a média da precisão obtida para os grafos testa
 
 \section{Conclusão}
 
-Em suma, pode-se verificar, que existem várias abordagens para a resolução do problema do \textit{Maximum Weight Cut}, entre elas a pesquisa exaustiva e a heurística gulosa, cada qual com as suas vantagens e desvantagens.
+Em suma, pode-se verificar que existem várias abordagens para a resolução do problema \textit{Maximum Weight Cut}, entre elas a pesquisa exaustiva e a heurística gulosa, cada qual com as suas vantagens e desvantagens.
 
 Através da análise dos resultados obtidos com a aplicação destas abordagens, nota-se que o algortimo de pesquisa exaustiva, face à heurística gulosa, tem uma complexidade computacional que aumenta muito mais rapidamente com o número de vértices, em particular, de forma exponencial, enquanto que a heurística gulosa apresenta uma complexidade quadrática, revelando-se mais eficiente para grafos de maior dimensão.
 
-Apesar do algortimo de heurística gulosa ter em seu favor a eficiência, como referido, este não garante a obtenção da solução ótima, pelo que a sua precisão varia de acordo com o grafo em análise, em contrapartida, o algoritmo de pesquisa exaustiva garante a obtenção da solução ótima, pelo que há um compromisso associado à escolha do algoritmo a ser aplicado. Ainda assim, foi possível observar que a heurística gulosa é capaz de fornecer soluções relativamente próximas à ótima, para grafos de menores dimensões, mas perdendo alguma precisão com o aumento do número de arestas.
+Apesar do algortimo de heurística gulosa ter em seu favor a eficiência, não garante a obtenção da solução ótima, pelo que a sua precisão varia de acordo com o grafo em análise. Em contrapartida, o algoritmo de pesquisa exaustiva garante a obtenção da solução ótima, pelo que há um compromisso associado à escolha do algoritmo a ser aplicado. Ainda assim, foi possível observar que a heurística gulosa é capaz de fornecer soluções relativamente próximas à ótima, para grafos de menores dimensões, mas perdendo alguma precisão com o aumento do número de arestas.
 
-Por fim, este estudo destacou a importância da escolha de abordagens metodológicas na resolução do problema do \textit{Maximum Weight Cut}, enfatizando como as características de cada algortimo influenciam tanto a qualidade das soluções como a eficiência do processo de resolução. Para além disso, embora apenas terem sido aplicados algoritmos determinísticos ao longo deste estudo, é provável que a integração de componentes estocásticas ou até mesmo a aplicação de técnicas de otimização via aprendizagem automática para ajustar as regras heurísticas, possam melhorar os resultados obtidos.
+Por fim, este estudo destacou a importância da escolha de abordagens metodológicas na resolução do problema \textit{Maximum Weight Cut}, enfatizando a influência das características de cada algortimo tanto na qualidade das soluções, como na eficiência do processo de resolução. Para além disso, embora apenas tenham sido aplicados algoritmos determinísticos ao longo deste estudo, é provável que a integração de componentes estocásticas, ou até mesmo a aplicação de técnicas de otimização via aprendizagem automática, para ajustar as regras heurísticas, possam melhorar os resultados obtidos.
 
 \bibliography{refs}
 
