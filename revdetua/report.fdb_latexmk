@@ -1,19 +1,19 @@
 # Fdb version 4
-["bibtex report"] 1731006115.55957 "report.aux" "report.bbl" "report" 1731006344.78696 0
+["bibtex report"] 1731006115.55957 "report.aux" "report.bbl" "report" 1731006840.21531 0
   "./p-revdetua.bst" 1326997358 15609 44ecfa447d812c289732ae87d3faed4d ""
   "./refs.bib" 1730893466.01853 3085 0a46c991caa33f0a03bcdecc5055e52e ""
-  "report.aux" 1731006344.5398 850 c855b5367e36eb126a59b4a0a09baf1b "pdflatex"
+  "report.aux" 1731006839.97263 850 c855b5367e36eb126a59b4a0a09baf1b "pdflatex"
   (generated)
   "report.bbl"
   "report.blg"
   (rewritten before read)
-["pdflatex"] 1731006339.68822 "/Users/hugover/Desktop/AA proj01/revdetua/report.tex" "report.pdf" "report" 1731006344.78707 0
+["pdflatex"] 1731006835.12971 "/Users/hugover/Desktop/AA proj01/revdetua/report.tex" "report.pdf" "report" 1731006840.21543 0
   "../assets/exampGraph.png" 1730979457.48127 519707 d9d409101d86e2012864e830cc0e0100 ""
   "../assets/execTIME.png" 1730884947.32716 243501 6ab2bd4f0d33ba835653c7589240387e ""
   "../assets/numberOPS.png" 1730885814.56825 355496 bdad9594335fe3e701a81d5d123c2cdc ""
   "../assets/precHEU.png" 1730885818.73131 576870 00e86abdf92463e28a26d5f28f9da966 ""
   "../assets/problem.png" 1730893390.78861 42876 28993cc8f04e468350fb33000d48857c ""
-  "/Users/hugover/Desktop/AA proj01/revdetua/report.tex" 1731006339.49688 24849 e64cc93c918c362fdfaf3deba8efa305 ""
+  "/Users/hugover/Desktop/AA proj01/revdetua/report.tex" 1731006834.93448 24843 26dc3b3359215fd8b81290d54be51eeb ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -94,9 +94,9 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1724153806 5498206 6c0f03cb370063b7ddbd563e5f9ce23a ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1724153954 8239412 02a25d85eb128426e9965e27e7615548 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "report.aux" 1731006344.5398 850 c855b5367e36eb126a59b4a0a09baf1b "pdflatex"
+  "report.aux" 1731006839.97263 850 c855b5367e36eb126a59b4a0a09baf1b "pdflatex"
   "report.bbl" 1731006115.64695 1808 46216d2921fb7fe1760180ed99e119aa "bibtex report"
-  "report.tex" 1731006339.49688 24849 e64cc93c918c362fdfaf3deba8efa305 ""
+  "report.tex" 1731006834.93448 24843 26dc3b3359215fd8b81290d54be51eeb ""
   "revdetua.cls" 1348080372 24164 8b1d9d26252f6b3f92c4a1888d855feb ""
   (generated)
   "report.aux"
