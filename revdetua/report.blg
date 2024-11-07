@@ -1,12 +1,12 @@
 This is BibTeX, Version 0.99d (TeX Live 2024)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: report.aux
-The style file: e-revdetua.bst
+The style file: p-revdetua.bst
 Database file #1: refs.bib
 Warning--empty journal in NP15
 You've used 8 entries,
             1840 wiz_defined-function locations,
-            477 strings with 4148 characters,
+            480 strings with 4192 characters,
 and the built_in function-call counts, 1501 in all, are:
 = -- 127
 > -- 65
