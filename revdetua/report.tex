@@ -227,7 +227,7 @@ Após a implementação e execução dos algoritmos de pesquisa exaustiva e pesq
 
 Pelo facto da complexidade de um algoritmo ser uma medida fundamental para compreender a sua eficiência, e a primeira poder ser medida em termos do número de operações básicas que ele realiza, em função do tamanho do parâmetro de entrada \cite{BS22}, esta análise visa validar as complexidades teóricas previamente discutidas nas secções referentes a cada algoritmo.
 
-Para isso, é criado um gráfico (fig. \ref{fig:numeroops}) que ilustra o número total de operações básicas executadas, por ambos os algoritmos, para grafos com diferentes números de arestas e de vértices.
+Para isso, foi criado um gráfico (fig. \ref{fig:numeroops}) que ilustra o número total de operações básicas executadas, por ambos os algoritmos, para grafos com diferentes números de arestas e de vértices.
 
 \begin{figure}[h]
     \centering
@@ -293,7 +293,7 @@ De forma a analisar a precisão deste algoritmo, foram comparados os pesos obtid
     \label{fig:precheu}
 \end{figure}
 
-Através da análise do gráfico, pode-se verificar que a precisão do algoritmo de heurística gulosa é influenciada pelo número de vértices e de arestas. Isto deve-se ao facto de que, quanto maior for o grafo, em termos de arestas, mais decisões locais o algoritmo terá de tomar, aumentando a probabilidade de fugir ao ótimo do problema, uma vez que as escolhas locais podem não ser as mais adequadas para o corte global. Para além disso, o número de vértices ao estar diretamente relacionado com o número de arestas, também revela uma influência na precisão.
+Através da análise deste último gráfico, pode-se verificar que a precisão do algoritmo de heurística gulosa é influenciada pelo número de vértices e de arestas. Isto deve-se ao facto de que, quanto maior for o grafo, em termos de arestas, mais decisões locais o algoritmo terá de tomar, aumentando a probabilidade de fugir ao ótimo do problema, uma vez que as escolhas locais podem não ser as mais adequadas para o corte global. Para além disso, o número de vértices ao estar diretamente relacionado com o número de arestas, também revela uma influência na precisão.
 
 Por fim, também foi calculada a média da precisão obtida para os grafos testados, sendo esta de aproximadamente $0.788$, revelando a capacidade do algortimo fornecer soluções de qualidade aceitável, especialmente para grafos de menor dimensão. Contudo, esta medida não deverá ser generalizada, visto que os grafos de menor dimensão ($n \leq 24$) foram testados em maior peso, face aos de maior dimensão (\textit{Gset}), pelo que a mesma poderá apresentar um enviesamento positivo.
 
